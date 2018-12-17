@@ -27,6 +27,7 @@ const styles = theme => ({
 function Review(props) {
   let total = 0;
   const { classes, products } = props;
+	console.log(products, ' products')
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
@@ -47,7 +48,7 @@ function Review(props) {
           <Typography variant="subtitle1" className={classes.total}>
           {
             products.products.map(product => {
-              total += product.product.price
+              total += product.product.price * product.cantidad
             })
           }
             $ {total}

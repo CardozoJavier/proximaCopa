@@ -19,6 +19,7 @@ import Review from './Reviews';
 import { styles } from './styles'
 import { sendEmail } from '../../store/actions/OrderActions';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const steps = ['Instrucciones', 'Datos personales', 'Revisar pedido'];
 
@@ -27,14 +28,49 @@ class Checkout extends React.Component {
 		super(props)
 		this.state = {
 			activeStep: 0,
+			telefono: '',
+			domicilio: '',
+			ciudad: '',
+			provincia: '',
+			user: {}
 		};
-		this.sendEmail= this.sendEmail.bind(this)
+		this.handleChange= this.handleChange.bind(this);
+		this.sendEmail= this.sendEmail.bind(this);
+	}
+
+	componentDidMount(){
+		axios.get(`/api/user/${this.props.user.id}`)
+			.then(data => this.setState({ 
+				telefono: data.data.telefono,
+				domicilio: data.data.domicilio,
+				ciudad: data.data.ciudad,
+				provincia: data.data.provincia
+			}))
+	}
+
+	handleChange(e){
+		var val= e.target.value;
+		val ? this.setState({ [e.target.name] : val }) : this.setState ({ [e.target.name] : ' ' })
 	}
 
   handleNext = () => {
     this.setState(state => ({
       activeStep: state.activeStep + 1,
     }));
+		// Actualizo la informacion del usuario para guardar sus datos personales para proximas compras.
+		if(this.state.activeStep == 1){ 
+			this.state.user= {
+				id: this.props.user.id,
+				firstName: this.props.user.firstName,
+				lastName: this.props.user.lastName,
+				email: this.props.user.email,
+				telefono: this.state.telefono.trim() || this.props.user.telefono,
+				domicilio: this.state.domicilio.trim() || this.props.user.domicilio,
+				ciudad: this.state.ciudad.trim() || this.props.ciudad,
+				provincia: this.state.provincia.trim() || this.props.user.provincia	
+			}
+			axios.put(`/api/user/${this.props.user.id}/update`, this.state.user)
+		}
   };
 
   handleBack = () => {
@@ -52,20 +88,18 @@ class Checkout extends React.Component {
   getStepContent(step) {
     switch (step) {
       case 0:
-      return <PaymentForm user={this.props.user}/>;
+      return <PaymentForm user={ this.props.user }/>;
       case 1:
-      return <AddressForm />;
+      return <AddressForm state= { this.state } handleChange= { this.handleChange } user= { this.props.user } />;
       case 2:
-        return <Review products={this.props.order}/>;
+        return <Review products={ this.props.order }/>;
       default:
         throw new Error('Unknown step');
     }
   }
 
 	sendEmail(e){
-		// console.log(this.props.user)
-		// console.log(this.props.order)
-		this.props.contactEmail(this.props.user,this.props.order)
+		this.props.contactEmail(this.state.user,this.props.order)
 		this.handleNext();
 	}
 
@@ -143,8 +177,8 @@ Checkout.propTypes = {
 function mapStateToProps(state){
   return{ 
       order: state.order,
-      user: state.user
-    }
+      user: state.user,
+		}
 };
 
 function mapDispatchToProps(dispatch){

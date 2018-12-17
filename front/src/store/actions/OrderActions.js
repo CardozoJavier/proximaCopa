@@ -130,7 +130,6 @@ export const setLocalStorage = ({ order }) => {
 
 
 export const sendEmail= (user, order) => (dispatch) => {
-	console.log(user, order, ' action')
 	axios.post('/api/orders/email', {
 		user,
 		order

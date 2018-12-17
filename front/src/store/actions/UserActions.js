@@ -1,12 +1,13 @@
 import axios from 'axios'
 import {addProductToOrder} from './OrderActions'
+import { LOG_A_USER, LOGOUT_USER } from '../constants';
 
 const setLoggedUser = user => ({
-    type: 'LOG_A_USER',
+    type: LOG_A_USER,
     user
 }); 
  const endSession = () => ({
-    type: 'LOGOUT_USER',
+    type: LOGOUT_USER,
     user:{
         id: 0,
         firstName: '',

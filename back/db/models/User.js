@@ -28,13 +28,27 @@ const User = db.define('user', {
             //     args: [6, 20]
             // }
         }
-    },
-   
+    },   
     admin: {
         type: Sequelize.INTEGER,
         defaultValue: 0,
     },
-    //PREGUNTAR POR TABLA FAVORITOS
+		telefono: {
+			type: Sequelize.STRING,
+			defaultValue: ''
+		},
+		domicilio: {
+			type: Sequelize.STRING,
+			defaultValue: ''
+		},
+		ciudad: {
+			type: Sequelize.STRING,
+			defaultValue: ''
+		},
+		provincia: {
+			type: Sequelize.STRING,
+			defaultValue: ''
+		}
 });
 
 User.passwordSalt = function () {

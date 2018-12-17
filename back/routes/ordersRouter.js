@@ -52,11 +52,18 @@ router.post('/email', (req,res) => {
 			from: 'proxima_copa@pogo.com',
 			to: 'cardozojavier.c@gmail.com',
 			subject: 'Datos de venta',
-			text: ['Nueva venta realizada: '
+			text: [
+				'\n -------------------------------------------------'
+			+	'\n Nueva venta realizada: '
 			+ '\n ID de usuario: ' + req.body.user.id
 			+ '\n Nombre de usuario: '+ req.body.user.firstName + ' ' + req.body.user.lastName
-			+ '\n Email: ' + req.body.user.email 
-			+ '\n Productos: \n_____________________________\n' + productInfo.join('')
+			+ '\n Email: ' + req.body.user.email
+			+ '\n Telefono: ' + req.body.user.telefono
+			+ '\n Domicilio: ' + req.body.user.domicilio
+			+ '\n Ciudad: ' + req.body.user.ciudad
+			+ '\n Provincia: ' + req.body.user.provincia
+			+ '\n -------------------------------------------------' 
+			+ '\n Productos: \n' + productInfo.join('')
 			+ '\n Total: $' + total].join('')
 
 		};
