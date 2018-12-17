@@ -2,7 +2,7 @@ const express= require('express');
 const router= express();
 const Sequelize = require('sequelize');
 
-const {Order, OrderProduct, Product}=require('../db/models/index')
+const { Order, OrderProduct, Product, Cellar, Line }=require('../db/models/index')
 
 var { apiKey, domain }= require('../config/mailing.js')
 var Mailgun= require('mailgun-js');
@@ -10,20 +10,61 @@ var mailgun= new Mailgun({ apiKey, domain });
 
 
 router.post('/email', (req,res) => {
-	var data = {
-		from: 'Excited User <me@samples.mailgun.org>',
-		to: 'cardozojavier.c@gmail.com',
-		subject: 'Datos de venta',
-		text: 'Nueva venta realizada',
-		user: req.body.user.firstName + ' ' + req.body.user.lastName,
-		products: req.body.order.products	
-	};
-	// console.log(data, ' data')
+	var total= 0;
+	var data= req.body.order.products.map(product => {
+			total += product.product.price * product.cantidad;
+			 return Cellar.findById(product.product.cellarId)
+			.then(data => {
+				var cellar= data.dataValues.cellarName;
+				return Line.findById(product.product.lineId)
+					.then(data => {
+						var line= data.dataValues.lineName;
+						return {
+							id: product.product.id,
+							name: product.product.productName,
+							cellar: cellar,
+							line: line,
+							year: product.product.year,
+							price: product.product.price,
+							quantity: product.cantidad,
+							subtotal: product.cantidad * product.product.price
+						}
+					})
+			})
+	})
+	Promise.all(data).then(data =>	{
+		// Esto va a ser el contentido del mail con los datos de la venta:
+		var productInfo= data.map(e => {
+			return [
+				'ID de producto: ' + e.id,
+				'\n Nombre de producto: ' + e.name,
+				'\n Nombre de bodega: ' + e.cellar,
+				'\n Nombre de línea: ' + e.line,
+				'\n Año de elaboración: ' + e.year,
+				'\n Precio unitario: $' + e.price,
+				'\n Cantidad de unidades: ' + e.quantity,
+				'\n Subtotal: $' + e.subtotal,
+				'\n_____________________________\n'
+			]
+		})		
+		// Formato del mail, con los campos requeridos por mailGun.
+		var content = {
+			from: 'proxima_copa@pogo.com',
+			to: 'cardozojavier.c@gmail.com',
+			subject: 'Datos de venta',
+			text: ['Nueva venta realizada: '
+			+ '\n ID de usuario: ' + req.body.user.id
+			+ '\n Nombre de usuario: '+ req.body.user.firstName + ' ' + req.body.user.lastName
+			+ '\n Email: ' + req.body.user.email 
+			+ '\n Productos: \n_____________________________\n' + productInfo.join('')
+			+ '\n Total: $' + total].join('')
 
-	mailgun.messages().send(data, function (error, body) {
-	  console.log(body);
+		};
+		mailgun.messages().send(content, function (error, body) {
+			error && console.log(error)
+		  console.log('Datos enviados al administrador');
+		});
 	});
-
 })
 
 
