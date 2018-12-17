@@ -64,7 +64,6 @@ const cellarsRouter= require('./routes/cellarsRouter');
 const productsRouter= require('./routes/productsRouter');
 const grapesRouter= require('./routes/grapesRouter');
 const userRouter = require('./routes/userRouter')
-// const orderRouter = require('./routes/orderRouter')
 const ordersRouter = require('./routes/ordersRouter')
 const meRouter = require('./routes/meRouter')
 
@@ -74,7 +73,6 @@ app.use('/api/lines', linesRouter);
 app.use('/api/grapes', grapesRouter);
 app.use('/api/products', productsRouter);
 app.use('/api/user', userRouter);
-// app.use('/api/orders', orderRouter);
 app.use('/api/orders', ordersRouter)
 app.use('/me', meRouter);
 app.use('/*', (req,res) => {
