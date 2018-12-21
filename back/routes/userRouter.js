@@ -21,7 +21,7 @@ router.post('/register', (req, res, )=>{
         password: req.body.password,
         firstName: req.body.firstName,
         lastName: req.body.lastName,
-       
+				admin: 1
     })
     .then(user => {
         res.send(user)
@@ -36,7 +36,7 @@ router.post('/registerAdmin', (req, res, )=>{
        password: req.body.password,
        firstName: req.body.firstName,
        lastName: req.body.lastName,
-       admin : 2 
+       admin : 5
       
    })
    .then(user => {
@@ -68,7 +68,8 @@ router.post('/login', passport.authenticate('local'), (req, res)=>{
 						telefono: user.telefono,
 						domicilio: user.domicilio,
 						ciudad: user.ciudad,
-						provincia: user.provincia
+						provincia: user.provincia,
+						admin: user.admin
 				})
 			}else{
 				console.log('NO ESTAS AUTENTICADO')

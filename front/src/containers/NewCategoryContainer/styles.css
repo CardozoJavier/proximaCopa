@@ -1,4 +1,5 @@
 .containerCategorias {
+	height: 100%;
   width: 1000px;
 }
 .containerCategorias .botones {
@@ -26,6 +27,7 @@
 .formCreateCategory {
   font-family: "Roboto", sans-serif;
   padding: 30px;
+	height: 100%;
 }
 .formCreateCategory label {
   margin: 10px;

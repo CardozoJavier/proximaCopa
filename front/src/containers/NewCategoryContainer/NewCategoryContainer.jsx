@@ -52,7 +52,7 @@ class NewCategoryContainer extends Component {
     render() {
     //LINEA BODEGA UVA
     return (
-        <div style={{"display": "flex"}}>
+        <div style={{"display": "flex", 'height':'100%'}}>
             <AdminPanelContainer />
             <div id="AgregarCategoriasAdmin" style={{"display": "flex", "flexDirection": "column"}}>
                 <NewCategory handleClickSelect={this.handleClickSelect}/>

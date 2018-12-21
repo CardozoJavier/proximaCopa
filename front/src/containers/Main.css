@@ -1,5 +1,7 @@
 /* #383838  -> NEGRITO NAVBAR*/
-
+html, body{
+	height: 100%;
+}
 /* CONTAINER */
 .row {  
     display: flex;
@@ -23,7 +25,7 @@
     color: #383838;
     line-height: 1.905rem;
     max-width: 250px;
-		width: 250px;
+		min-width: 250px;
     display: flex;
     flex-direction: column;
 }
@@ -68,6 +70,7 @@
 .main {
     flex: 1;
     background-color: white;
+		height: 100%;
     /* padding-top: 20px; */
 }
 
@@ -83,4 +86,6 @@
     
 }
 
-
+.container{
+	height: 100%;
+}

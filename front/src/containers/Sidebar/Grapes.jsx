@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import { connect } from 'react-redux'
 // import Checkbox from '@material-ui/core/Checkbox';
-import s from '../../containers/Sidebar/styles.css'
+import s from './styles.css'
 
 class Grapes extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            check: false,
+            check: true,
             allGrapes: []
         }
     }

@@ -5,8 +5,9 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 
 import AdminPanelContainer from '../AdminPanelContainer/AdminPanelContainer';
-import s from '../AdminPanelContainer/style.css';
 import NewProduct from '../../components/NewProduct';
+import App from './ImageUpload';
+import s from '../AdminPanelContainer/style.css';
 import Toast from './Toast';
 import { createProduct, getGrapes } from '../../store/actions/ProductsActions';
 
@@ -30,13 +31,16 @@ class NewProductContainer extends Component{
 			box: '',
 			wrongLine: false,
 			wrongCellar: false,
-			open: true,
+			open: false,
+			uploader: false
 		}
 		this.handleChange= this.handleChange.bind(this);
 		this.handleClick= this.handleClick.bind(this);
 		this.isChecked= this.isChecked.bind(this);
 		this.checkValue= this.checkValue.bind(this);
 		this.handleClose= this.handleClose.bind(this);
+		this.imageUpload= this.imageUpload.bind(this);
+		this.clear= this.clear.bind(this);
 	}
 
 	componentDidMount(){
@@ -78,7 +82,7 @@ class NewProductContainer extends Component{
 		}
 		// e.preventDefault();
 		const body= {
-			productName : this.state.productName || this.state.cellarName + ' ' + this.state.lineName ,
+			productName : this.state.productName || this.state.cellarName + ' - ' + this.state.lineName ,
 			cellarName : this.state.cellarName,
 			lineName : this.state.lineName,
 			year : this.state.year,
@@ -89,7 +93,8 @@ class NewProductContainer extends Component{
 			grapes: this.state.grapes,
 			box: this.state.box
 		}
-		this.props.createProduct(body);
+		this.props.createProduct(body)
+		.then(() => this.setState({ open:true }))
 	}
 
 	checkValue(e){
@@ -116,20 +121,34 @@ class NewProductContainer extends Component{
 		});
   };
 
+	imageUpload(){
+		this.setState({
+			uploader : !this.state.uploader
+		})
+	}
+
+	clear(){
+		this.setState({
+			productName : '',
+			cellarName : '',
+			lineName : '',
+			year : '',
+			stock : 0,
+			price : 0,	
+			description : '',
+			image: '',
+			grapes: [],			
+		})
+	}
 
 	render(){
-		// console.log(this.props.created, ' PROPS')
 		return (
 				<div className={s.container}>
-					
-					{ 
-						this.props.created == 200 || this.props.created == 500 ? 
-						<Toast open= {this.state.open} handleClose= {this.handleClose} status={this.props.created}/> 
-						: 
-						null
-					}
 					<AdminPanelContainer />
+					
 					<NewProduct
+						clear= { this.clear }
+						imageUpload= { this.imageUpload }
 						wrongLine= { this.state.wrongLine && <p>El campo 'Linea' es obligatorio. Por favor elige entre las opciones</p> }
 						wrongCellar= { this.state.wrongCellar && <p>El campo 'Bodega' es obligatorio. Por favor elige entre las opciones</p> }
 						checkValue= {this.checkValue}
@@ -139,6 +158,11 @@ class NewProductContainer extends Component{
 						handleChange={this.handleChange} 
 						handleClick={this.handleClick} 
 					/>
+					
+					{ 
+						this.state.open && 
+						<Toast open= {this.state.open} handleClose= {this.handleClose} status={this.props.created}/> 
+					}
 				</div>
 		)
 	}

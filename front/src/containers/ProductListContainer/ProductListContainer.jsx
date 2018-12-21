@@ -1,5 +1,3 @@
-// FUNCANDO 28-11_10:00hs
-
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
@@ -59,7 +57,7 @@ class NewProductContainer extends Component{
 	}
 
 	handleClick(e){
-		this.props.editProduct(e.target.value)
+		this.props.editProduct(e.rowData.id);
 	}
 
 

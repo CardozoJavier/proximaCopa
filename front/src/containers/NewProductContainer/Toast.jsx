@@ -26,7 +26,6 @@ class SimpleSnackbar extends React.Component {
 
   render() {
     const { classes, status, handleClose, open } = this.props;
-		// console.log(status, ' STATUS ____ ', open, ' OPEN')
     return (
       <div>
         <Snackbar

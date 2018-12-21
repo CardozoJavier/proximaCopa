@@ -66,13 +66,13 @@ const actionCreateProduct= (product) => {
 
 export const createProduct= (product) => {
 	return dispatch => {
-		axios.post('/api/products/newproduct', product)
+		return axios.post('/api/products/newproduct', product)
 			.then(res => {
 				// console.log(res, ' RES')
 				dispatch(actionCreateProduct(res.status))
 			})
 			.catch(e => {
-				dispatch(actionCreateProduct(e.response.status))
+				dispatch(actionCreateProduct(e))
 				// console.log('error enviado por el back ', e)
 			})
 	}
@@ -156,4 +156,8 @@ export const updateProduct= function(data){
 			})
 			.catch(e => productUpdated(res.status))
 	}
+}
+
+export const backToList= () => (dispatch) => {
+	return dispatch(selectProduct({}))
 }

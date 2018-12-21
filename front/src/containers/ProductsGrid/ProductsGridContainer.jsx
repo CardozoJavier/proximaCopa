@@ -19,7 +19,8 @@ function mapStateToProps(state, ownProps) {
         filtrosNavbar: state.products.filteredProducts,
         allProducts: state.products.allProducts,
         order: state.order,
-        user: state.user
+        user: state.user,
+				selectedProduct : state.products.selectedProduct
     };
 }
 
@@ -106,11 +107,10 @@ class ProductsGridContainer extends Component {
     render() {
         return (
             <div className={s.row}>
-            
-                <div className={s.side}>
-                    <SidebarContainer />
-                </div>
-
+								<div className={s.side}>
+										<SidebarContainer />
+								</div>
+								
                 <div className={s.main}>
                     {
                         this.props.filtrosNavbar.result === false ?
@@ -130,8 +130,8 @@ class ProductsGridContainer extends Component {
                     }
                       <Snackbar
                         anchorOrigin={{
-                            vertical: 'top',
-                            horizontal: 'center',
+													vertical: 'bottom',
+													horizontal: 'left',
                         }}
                         open={this.state.open}
                         autoHideDuration={2500}

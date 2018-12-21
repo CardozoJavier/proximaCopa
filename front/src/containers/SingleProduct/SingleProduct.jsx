@@ -59,8 +59,8 @@ class SingleProduct extends React.Component {
 
                     <Snackbar
                         anchorOrigin={{
-                            vertical: 'top',
-                            horizontal: 'center',
+                            vertical: 'bottom',
+                            horizontal: 'left',
                         }}
                         open={this.state.open}
                         autoHideDuration={2500}

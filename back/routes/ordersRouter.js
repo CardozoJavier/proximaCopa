@@ -37,13 +37,13 @@ router.post('/email', (req,res) => {
 		var productInfo= data.map(e => {
 			return [
 				'ID de producto: ' + e.id,
-				'\n Nombre de producto: ' + e.name,
-				'\n Nombre de bodega: ' + e.cellar,
-				'\n Nombre de línea: ' + e.line,
-				'\n Año de elaboración: ' + e.year,
-				'\n Precio unitario: $' + e.price,
-				'\n Cantidad de unidades: ' + e.quantity,
-				'\n Subtotal: $' + e.subtotal,
+				'\nNombre de producto: ' + e.name,
+				'\nNombre de bodega: ' + e.cellar,
+				'\nNombre de línea: ' + e.line,
+				'\nAño de elaboración: ' + e.year,
+				'\nPrecio unitario: $' + e.price,
+				'\nCantidad de unidades: ' + e.quantity,
+				'\nSubtotal: $' + e.subtotal,
 				'\n_____________________________\n'
 			]
 		})		
@@ -53,17 +53,17 @@ router.post('/email', (req,res) => {
 			to: 'cardozojavier.c@gmail.com',
 			subject: 'Datos de venta',
 			text: [
-				'\n -------------------------------------------------'
-			+	'\n Nueva venta realizada: '
-			+ '\n ID de usuario: ' + req.body.user.id
-			+ '\n Nombre de usuario: '+ req.body.user.firstName + ' ' + req.body.user.lastName
-			+ '\n Email: ' + req.body.user.email
-			+ '\n Telefono: ' + req.body.user.telefono
-			+ '\n Domicilio: ' + req.body.user.domicilio
-			+ '\n Ciudad: ' + req.body.user.ciudad
-			+ '\n Provincia: ' + req.body.user.provincia
-			+ '\n -------------------------------------------------' 
-			+ '\n Productos: \n' + productInfo.join('')
+			'	Nueva venta realizada\n'
+			+ '- - - - - - - - - - - - - - - - - - - - - - - - - -'
+			+ '\n	ID de usuario: ' + req.body.user.id
+			+ '\n	Nombre de usuario: '+ req.body.user.firstName + ' ' + req.body.user.lastName
+			+ '\n	Email: ' + req.body.user.email
+			+ '\n	Telefono: ' + req.body.user.telefono
+			+ '\n	Domicilio: ' + req.body.user.domicilio
+			+ '\n	Ciudad: ' + req.body.user.ciudad
+			+ '\n	Provincia: ' + req.body.user.provincia + '\n'	
+			+ '- - - - - - - - - - - - - - - - - - - - - - - - - -\n'
+			+ 'Productos: \n' + productInfo.join('')
 			+ '\n Total: $' + total].join('')
 
 		};
@@ -141,7 +141,7 @@ router.post('/addProductToOrder', function(req, res){
             userId: req.body.userId
         }
     })
-    .then(res=> res[0].dataValues)
+    .then(data=> data[0].dataValues)
     .then(order=> OrderProduct.findOrCreate({
         where:{
               orderId: order.id, 
@@ -152,7 +152,7 @@ router.post('/addProductToOrder', function(req, res){
     
     .then(data=>{
         if(!data[1]){
-            data[0].cantidad ++
+            data[0].cantidad++
             OrderProduct.update(
                 {cantidad: data[0].cantidad++ },
                 {where:{     
@@ -266,5 +266,6 @@ router.post('/deleteAllProducts', function(req, res){
     )   
     .then(data=> res.send(data))
 })
+
 
 module.exports= router;

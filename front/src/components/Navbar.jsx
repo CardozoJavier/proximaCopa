@@ -84,7 +84,7 @@ function CustomizedInputs(props) {
       <div className={s.leftSideNavbar}>
         <li> <Link to="/">HOME</Link></li> 
         <div className={s.profile_Navbar}>
-            {user.firstName && <Link to="/"> {user.firstName} </Link> }
+            {user.firstName && <Link to="/user"> {user.firstName} </Link> }
         </div>         
       </div>
       <div className={s.middleNavbar}>

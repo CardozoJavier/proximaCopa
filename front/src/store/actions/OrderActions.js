@@ -133,5 +133,6 @@ export const sendEmail= (user, order) => (dispatch) => {
 	axios.post('/api/orders/email', {
 		user,
 		order
-	}).then(data => console.log(data, ' data devuelta del back'))
+	})
+		.catch(e => console.log(e))
 }

@@ -17,7 +17,7 @@ import AddressForm from './AdressForm';
 import PaymentForm from './PaymentForm';
 import Review from './Reviews';
 import { styles } from './styles'
-import { sendEmail } from '../../store/actions/OrderActions';
+import { sendEmail, handleEmptyOrder } from '../../store/actions/OrderActions';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
@@ -36,6 +36,7 @@ class Checkout extends React.Component {
 		};
 		this.handleChange= this.handleChange.bind(this);
 		this.sendEmail= this.sendEmail.bind(this);
+		this.goCheckout= this.goCheckout.bind(this);
 	}
 
 	componentDidMount(){
@@ -99,8 +100,14 @@ class Checkout extends React.Component {
   }
 
 	sendEmail(e){
-		this.props.contactEmail(this.state.user,this.props.order)
+		this.props.contactEmail(this.state.user,this.props.order);
+		console.log(this.props.user)
+		this.props.handleEmptyOrder(this.props.user)
 		this.handleNext();
+	}
+
+	goCheckout(){
+		this.props.history.push('/carrito');
 	}
 
   render() {
@@ -142,11 +149,11 @@ class Checkout extends React.Component {
                 <React.Fragment>
                   {this.getStepContent(activeStep)}
                   <div className={classes.buttons}>
-                    {activeStep !== 0 && (
-                      <Button onClick={this.handleBack} className={classes.button}>
+                    {/* {activeStep !== 0 && ( */}
+                      <Button onClick={ activeStep == 0 && this.goCheckout || this.handleBack} className={classes.button}>
                         Atras
                       </Button>
-                    )}
+                    {/* )} */}
 
                     {
                       this.props.user.id &&
@@ -185,7 +192,9 @@ function mapDispatchToProps(dispatch){
   return{ 
 		contactEmail: (user, order) => {
 			dispatch(sendEmail(user, order))
-		}
+		},
+		handleEmptyOrder : (user) => (dispatch) => dispatch(handleEmptyOrder(user))
+
   //   logoutUser: ()=>{
   //     dispatch(logoutUser())
   // },

@@ -5,12 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import Grid from '@material-ui/core/Grid';
 
-// const products = [
-//   { name: 'Cabernet Sauvignon', desc: 'Frutal sabroso', price: '$150.40' },
-//   { name: 'Merluza', desc: 'Polvo de diamantes', price: '$15.500' },
-// ];
 
 const styles = theme => ({
   listItem: {
@@ -27,7 +22,6 @@ const styles = theme => ({
 function Review(props) {
   let total = 0;
   const { classes, products } = props;
-	console.log(products, ' products')
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>

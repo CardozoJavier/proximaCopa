@@ -5,7 +5,7 @@ import axios from 'axios';
 import s from '../AdminPanelContainer/style.css';
 import FormProductEdit from '../../components/FormProductEdit';
 import UpdateToast from './UpdateToast';
-import { fetchAllCellars, fetchAllLines, fetchSelectedGrapes, getGrapes, updateProduct } from '../../store/actions/ProductsActions';
+import { fetchAllCellars, fetchAllLines, fetchSelectedGrapes, getGrapes, updateProduct, backToList } from '../../store/actions/ProductsActions';
 
 
 class NewProductContainer extends Component{
@@ -30,6 +30,7 @@ class NewProductContainer extends Component{
 		this.handleChange= this.handleChange.bind(this);
 		this.handleSubmit= this.handleSubmit.bind(this);
 		this.handleClose= this.handleClose.bind(this);
+		this.backToList= this.backToList.bind(this);
 	}
 
 	componentDidMount(){
@@ -56,10 +57,11 @@ class NewProductContainer extends Component{
 	}
 
 	handleChange(e){
+		var val= e.target.value;
 		// Si el target son los checkbox de grapes, el setState va a depender de su estado boolean.
 		if(e.target.name == 'grapes'){
 			// Parseo el value del checkbox html.
-			var parseGrape= JSON.parse(e.target.value)
+			var parseGrape= JSON.parse(val)
 			// Armo un objeto que voy a usar para checkear el estado boolean del checkbox.
 			var grape= {
 				id: parseGrape.id,
@@ -141,21 +143,26 @@ class NewProductContainer extends Component{
 		})
 	}
 
+	backToList(){
+		this.props.backToList();
+	}
+
 	render(){
 		return (
 				<div className={s.container}>
-							<FormProductEdit 
-								handleCheck= {this.handleCheck}
-								allCellars= {this.props.allCellars} 
-								allLines= {this.props.allLines} 
-								allGrapes= {this.state.allGrapes}
-								selectedGrapes= {this.state.selectedGrapes}
-								selectedLine= {this.state.selectedLine}
-								selectedCellar= {this.state.selectedCellar}
-								handleChange= {this.handleChange} 
-								selectedProduct= {this.props.selectedProduct}
-								state= {this.state}
-								handleSubmit= {this.handleSubmit}
+							<FormProductEdit
+								backToList= { this.backToList } 
+								handleCheck= { this.handleCheck }
+								allCellars= { this.props.allCellars } 
+								allLines= { this.props.allLines } 
+								allGrapes= { this.state.allGrapes }
+								selectedGrapes= { this.state.selectedGrapes }
+								selectedLine= { this.state.selectedLine }
+								selectedCellar= { this.state.selectedCellar }
+								handleChange= { this.handleChange } 
+								selectedProduct= { this.props.selectedProduct }
+								state= { this.state }
+								handleSubmit= { this.handleSubmit }
 							/>
 							{
 								this.props.productUpdated == 200 || this.props.productUpdated == 500 ? 
@@ -174,7 +181,7 @@ const mapStateToProps= (state) => {
 		allLines: state.products.allLines,
 		selectedGrapes: state.products.selectedGrapes,
 		grapes: state.products.grapes,
-		productUpdated: state.products.productUpdated
+		productUpdated: state.products.productUpdated,
 	}
 }
 
@@ -194,6 +201,9 @@ const mapDispatchToProps= (dispatch) => {
 		},
 		updateProduct : function(data){
 			return dispatch(updateProduct(data))
+		},
+		backToList : function(){
+			return dispatch(backToList())
 		}
 	}
 }

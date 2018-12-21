@@ -37,11 +37,9 @@ class TextFields extends React.Component {
 		this.setState({ [name]:e.target.checked })
 	}
   render() {
-    const { classes, state, handleChange, grapes, checkValue, wrongCellar, wrongLine } = this.props;
-		// console.log(grapes)
+    const { classes, state, handleChange, grapes, checkValue, wrongCellar, wrongLine, imageUpload, clear } = this.props;
     return (
 			<div className={s.form}>
-			{/* <AdminPanelContainer /> */}
 				<div className={s.title}>
 					<h1>Nuevo producto</h1>
 				</div>
@@ -50,7 +48,6 @@ class TextFields extends React.Component {
 						id="standard-name"
 						label="Nombre"
 						fullWidth
-						// className={classes.textField}
 						value={state.productName}
 						onChange={handleChange}
 						margin="normal"
@@ -61,39 +58,26 @@ class TextFields extends React.Component {
 						id="standard-name"
 						label="Año"
 						fullWidth
-						// className={classes.textField}
 						value={state.year}
 						onChange={handleChange}
 						margin="normal"
 						name='year'
 					/>
 					<TextField
+						onClick= { imageUpload }
 						id="standard-name"
 						label="Nombre imagen"
 						fullWidth
-						// className={classes.textField}
 						value={state.image}
 						onChange={handleChange}
 						margin="normal"
 						name='image'
 					/>
-
-					{/* <TextField
-						id="standard-name"
-						label="Inventario (ID de caja)"
-						fullWidth
-						// className={classes.textField}
-						value={state.box}
-						onChange={handleChange}
-						margin="normal"
-						name='box'
-					/> */}
 					<TextField
 						id="standard-multiline-static"
 						label="Descripción"
 						multiline
 						fullWidth
-						// className={classes.textField}
 						margin="normal"
 						onChange={handleChange}
 						name='description'
@@ -105,7 +89,6 @@ class TextFields extends React.Component {
 						onChange={handleChange}
 						type="number"
 						fullWidth
-						// className={classes.textField}
 						InputLabelProps={{
 							shrink: true,
 						}}
@@ -119,7 +102,6 @@ class TextFields extends React.Component {
 						onChange={handleChange}
 						type="number"
 						fullWidth
-						// className={classes.textField}
 						InputLabelProps={{
 							shrink: true,
 						}}
@@ -155,8 +137,6 @@ class TextFields extends React.Component {
 						}				
 					</TextField>
 					<span className={s.alert}>{ wrongCellar }</span>
-
-
 					<TextField
 						onBlur= {checkValue}
 						onChange= {handleChange}
@@ -185,7 +165,6 @@ class TextFields extends React.Component {
 						}				
 					</TextField>
 					<span className={s.alert}>{ wrongLine }</span>
-
 					<div className={s.checkbox}>
 						<div className={s.header}>
 							<h3>Tipos de uva</h3>
@@ -207,6 +186,7 @@ class TextFields extends React.Component {
 						}
 					</div>
 					<div className= {s.submit}>
+						<button className={s.btnBack} onClick= { clear }>Nuevo producto</button>
 						<Button onClick={this.props.handleClick} variant="contained" color="primary" className={classes.button}>
 							Publicar
 						</Button>

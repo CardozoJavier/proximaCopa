@@ -1,5 +1,3 @@
-// FUNCANDO 28-11_10:00hs
-
 import React from 'react';
 import s from '../containers/NewProductContainer/style.css';
 
@@ -37,11 +35,9 @@ class TextFields extends React.Component {
 		this.setState({ [name]:e.target.checked })
 	}
   render() {
-    const { classes, state, handleChange, grapes, checkValue, wrongCellar, wrongLine } = this.props;
-		// console.log(grapes)
+    const { classes, state, handleChange, grapes, checkValue, wrongCellar, wrongLine, handleClick, backToList } = this.props;
     return (
 			<div className={s.form}>
-			{/* <AdminPanelContainer /> */}
 				<div className={s.title}>
 					<h1>Editar producto</h1>
 				</div>
@@ -50,7 +46,6 @@ class TextFields extends React.Component {
 						id="standard-name"
 						label="Nombre"
 						fullWidth
-						// className={classes.textField}
 						value={state.productName}
 						onChange={handleChange}
 						margin="normal"
@@ -61,7 +56,6 @@ class TextFields extends React.Component {
 						id="standard-name"
 						label="Año"
 						fullWidth
-						// className={classes.textField}
 						value={state.year}
 						onChange={handleChange}
 						margin="normal"
@@ -71,29 +65,16 @@ class TextFields extends React.Component {
 						id="standard-name"
 						label="Nombre imagen"
 						fullWidth
-						// className={classes.textField}
 						value={state.image}
 						onChange={handleChange}
 						margin="normal"
 						name='image'
 					/>
-
-					{/* <TextField
-						id="standard-name"
-						label="Inventario (ID de caja)"
-						fullWidth
-						// className={classes.textField}
-						value={state.box}
-						onChange={handleChange}
-						margin="normal"
-						name='box'
-					/> */}
 					<TextField
 						id="standard-multiline-static"
 						label="Descripción"
 						multiline
 						fullWidth
-						// className={classes.textField}
 						margin="normal"
 						onChange={handleChange}
 						name='description'
@@ -105,7 +86,6 @@ class TextFields extends React.Component {
 						onChange={handleChange}
 						type="number"
 						fullWidth
-						// className={classes.textField}
 						InputLabelProps={{
 							shrink: true,
 						}}
@@ -119,7 +99,6 @@ class TextFields extends React.Component {
 						onChange={handleChange}
 						type="number"
 						fullWidth
-						// className={classes.textField}
 						InputLabelProps={{
 							shrink: true,
 						}}
@@ -207,8 +186,11 @@ class TextFields extends React.Component {
 						}
 					</div>
 					<div className= {s.submit}>
-						<Button onClick={this.props.handleClick} variant="contained" color="primary" className={classes.button}>
+						<Button onClick={ handleClick } variant="contained" color="primary" className={classes.button}>
 							Publicar
+						</Button>
+						<Button onClick={ backToList } variant="contained" color="primary" className={classes.button}>
+							Atras
 						</Button>
 					</div>
 				</form>

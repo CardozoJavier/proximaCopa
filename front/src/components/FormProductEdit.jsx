@@ -49,7 +49,8 @@ class TextFields extends React.Component {
 						wrongLine, 
 						selectedProduct, 
 						allCellars, 
-						allLines } = this.props;
+						allLines,
+						backToList } = this.props;
     return (
 			<div className={s.form}>
 				<div className={s.title}>
@@ -207,7 +208,8 @@ class TextFields extends React.Component {
 						}
 					</div>
 					<div className= {s.submit}>
-						<Button onClick={handleSubmit} variant="contained" color="primary" className={classes.button}>
+						<button className={s.btnBack} onClick= { backToList }>Back to shopping</button>
+						<Button onClick={ handleSubmit } variant="contained" color="primary" className={classes.button}>
 							Actualizar
 						</Button>
 					</div>

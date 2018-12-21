@@ -35,7 +35,7 @@ class Grapes extends Component {
             <div>
                 <ul className={s.filtros}>
                 <div className={s.categoria}>
-                    <h3> Linea</h3>
+                    <h3>Líneas</h3>
                     <i onClick={() => this.toggleMenu()}
                     className="material-icons">{this.state.check ? "expand_less" : "expand_more" }</i>
             </div>

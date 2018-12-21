@@ -3,17 +3,18 @@ import {addProductToOrder} from './OrderActions'
 import { LOG_A_USER, LOGOUT_USER } from '../constants';
 
 const setLoggedUser = user => ({
-    type: LOG_A_USER,
-    user
+	type: LOG_A_USER,
+	user
 }); 
- const endSession = () => ({
-    type: LOGOUT_USER,
-    user:{
-        id: 0,
-        firstName: '',
-        lastName: '',
-        email: ''
-     }
+
+const endSession = () => ({
+	type: LOGOUT_USER,
+	user:{
+		id: 0,
+		firstName: '',
+		lastName: '',
+		email: ''
+	}
 })
 
 
@@ -34,8 +35,8 @@ export const logoutUser=()=>dispatch =>{
 
 
 export const isLogged = () => dispatch => {
-    axios.get('/me')
-    .then(res => dispatch(setLoggedUser(res.data)))
+	axios.get('/me')
+	.then(res => dispatch(setLoggedUser(res.data)))
 }
 
 
