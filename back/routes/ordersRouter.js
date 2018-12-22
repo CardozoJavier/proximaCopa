@@ -268,4 +268,9 @@ router.post('/deleteAllProducts', function(req, res){
 })
 
 
+router.get('/', (req,res) => {
+	Order.findAll({})
+		.then(data => res.send(data))
+});
+
 module.exports= router;

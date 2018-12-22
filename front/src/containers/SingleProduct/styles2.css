@@ -7,15 +7,20 @@
   max-width: 360px;
   max-height: 360px;
 }
-.singleProdContainer .imgProd img {
+/* .singleProdContainer .imgProd img {
   object-fit: cover;
   width: 360px;
   height: 360px;
-}
+} */
 .singleProdContainer .descripcionProd {
   font-family: "Lato", "Roboto", sans-serif;
   padding: 20px;
   padding-top: 0px;
+}
+
+.singleProdContainer .descripcionProd p{
+	min-width: 400px;
+	max-width: 400px;
 }
 .singleProdContainer .descripcionProd .buttonCarrito {
   background-color: #913d47;
@@ -32,6 +37,9 @@
 }
 .singleProdContainer .descripcionProd h1 {
   font-weight: 500;
+}
+.singleProdContainer .descripcionProd h2 span {
+  color: #af3234;
 }
 .singleProdContainer .descripcionProd h3 {
   font-weight: 100;

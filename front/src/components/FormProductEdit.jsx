@@ -208,7 +208,7 @@ class TextFields extends React.Component {
 						}
 					</div>
 					<div className= {s.submit}>
-						<button className={s.btnBack} onClick= { backToList }>Back to shopping</button>
+						<button className={s.btnBack} onClick= { backToList }>Listado</button>
 						<Button onClick={ handleSubmit } variant="contained" color="primary" className={classes.button}>
 							Actualizar
 						</Button>

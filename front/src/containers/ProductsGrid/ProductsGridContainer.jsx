@@ -20,7 +20,7 @@ function mapStateToProps(state, ownProps) {
         allProducts: state.products.allProducts,
         order: state.order,
         user: state.user,
-				selectedProduct : state.products.selectedProduct
+				selectedProduct : state.products.selectedProduct,
     };
 }
 
@@ -40,8 +40,7 @@ function mapDispatchToProps(dispatch, ownProps) {
         },
         addProductToDataBase:function(cart){
             dispatch(addProductToDataBase(cart))
-        },
-       
+        },      
     };
 }
 
@@ -73,17 +72,15 @@ class ProductsGridContainer extends Component {
       
     
     handleClick(selectedProduct) {
-        this.props.selectSingleProduct(selectedProduct.id)
-        this.props.fetchSimilarProducts(selectedProduct.id)
-        this.props.history.push(`/OneProduct/${selectedProduct.id}`)
+        this.props.selectSingleProduct(selectedProduct.id);
+        this.props.fetchSimilarProducts(selectedProduct.id);
+        this.props.history.push(`/OneProduct/${selectedProduct.id}`);
     }
    
     handleClickCart(product){
       var user = this.props.user
-        
-        this.props.addProductToOrder(product, user);
-				this.handleClickToast();
-        // this.props.addProductToDataBase(product)
+			this.props.addProductToOrder(product, user);
+			this.handleClickToast();
     }
 
     handleClickToast = () => {

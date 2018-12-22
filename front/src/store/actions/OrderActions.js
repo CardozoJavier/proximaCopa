@@ -2,7 +2,7 @@ import axios from "axios"
 import ReduxThunk from 'redux-thunk' 
 import { func } from "prop-types";
 import {isLogged} from "./UserActions"
-
+import { FETCH_ORDERS } from '../constants';
 
 const add_product_to_order = function(product){
     return {
@@ -41,6 +41,12 @@ const set_cart_from_user_to_store=function(storage){
     }
 }
 
+const fetchOrders= (allOrders) => {
+	return {
+		type : FETCH_ORDERS,
+		allOrders
+	}
+}
 
 
 export const handleEmptyOrder = (user) => {
@@ -136,3 +142,12 @@ export const sendEmail= (user, order) => (dispatch) => {
 	})
 		.catch(e => console.log(e))
 }
+
+
+
+export const fetchAllOrders= () => dispatch => {
+	return axios.get('/api/orders')
+		.then(res => res.data)
+		.then(orders => dispatch(fetchOrders(orders)))
+}
+

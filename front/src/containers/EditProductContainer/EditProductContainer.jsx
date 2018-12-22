@@ -24,7 +24,7 @@ class NewProductContainer extends Component{
 			selectedLine: {},
 			selectedGrapes: [],
 			grapes: [],
-			open: true,
+			open: false,
 			allGrapes: []
 		}
 		this.handleChange= this.handleChange.bind(this);
@@ -111,7 +111,8 @@ class NewProductContainer extends Component{
 			lineId: Number(state.lineId) || selectedProduct.lineId,
 			grapes: grapes
 		}
-		this.props.updateProduct(data);
+		this.props.updateProduct(data)
+			.then(() => this.setState({ open : true }));
 	}
 
   handleClose () {
@@ -165,10 +166,8 @@ class NewProductContainer extends Component{
 								handleSubmit= { this.handleSubmit }
 							/>
 							{
-								this.props.productUpdated == 200 || this.props.productUpdated == 500 ? 
+								this.state.open &&  
 								<UpdateToast open= {this.state.open} handleClose= {this.handleClose} status={this.props.productUpdated}/> 
-								: 
-								null
 							}
 				</div>
 		)

@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { addProductToOrder, setLocalStorage } from '../../store/actions/OrderActions'
-
+import { fetchSelectedGrapes } from '../../store/actions/ProductsActions'; 
 import s from './SingleProduct.css'
 import s2 from './styles2.css'
 
@@ -38,6 +38,7 @@ class SingleProduct extends React.Component {
         this.setState({ open: false });
     };
     render() {
+		var { selectedProduct, selectedGrapes } = this.props;
         return (
             <div >
                 {
@@ -47,10 +48,14 @@ class SingleProduct extends React.Component {
                                 <img src={this.props.selectedProduct.image}></img>
                             </div>
                             <div className={s2.descripcionProd}>
-                                <h1>{this.props.selectedProduct.productName}  {this.props.selectedProduct.year}</h1>
-                                <h2 className={s2.precio}>$ {this.props.selectedProduct.price}</h2>
-                                <h3 className={s2.precio}>Stock Disponible: <span>{this.props.selectedProduct.stock} </span></h3>
-                                <p> {this.props.selectedProduct.description} </p>
+                                <h1>{ selectedProduct.productName }</h1>
+                                <h2 className={s2.precio}>Precio $<span>{selectedProduct.price}</span></h2>
+                                <h3 className={s2.precio}>Stock Disponible <span>{selectedProduct.stock} </span></h3>
+                                <p> {selectedProduct.description} </p>
+																<p>Cosecha { selectedProduct.year }</p>
+																<p>Cepaje: </p> { selectedGrapes.map(grape => {
+																	return <p key={ grape.id } style= {{ paddingLeft: '1em' }}>· { grape.grapeName }</p>
+																}) }
                                 <button className={s2.buttonCarrito} onClick={() => this.handleClickCart(this.props.selectedProduct)}>Agregar al carrito</button>
 
                             </div>
@@ -79,7 +84,9 @@ class SingleProduct extends React.Component {
 
 function mapStateToProps(state, ownProps) {
 	return {
-		user: state.user
+		user: state.user,
+		selectedGrapes: state.products.selectedGrapes,
+		selectedProduct: state.products.selectedProduct
 	};
 }
 
@@ -93,6 +100,9 @@ function mapDispatchToProps(dispatch, ownProps) {
 		},
 		addProductToOrder: function(product,user){
 			dispatch(addProductToOrder(product,user))
+		},
+		fetchGrapes: (productId) => {
+			return dispatch(fetchSelectedGrapes(productId))
 		}
 	};
 }

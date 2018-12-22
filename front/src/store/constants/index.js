@@ -9,6 +9,8 @@ export const FETCH_SELECTEDGRAPES= 'FETCH_SELECTEDGRAPES';
 export const PRODUCT_UPDATED= 'PRODUCT_UPDATED';
 export const LOG_A_USER= 'LOG_A_USER';
 export const LOGOUT_USER= 'LOGOUT_USER';
+export const FETCH_ORDERS= 'FETCH_ORDERS';
+export const FETCH_USERS= 'FETCH_USERS';
 
 // Render inicial:
 export const FETCH_ALL_PRODUCTS = 'FETCH_ALL_PRODUCTS'

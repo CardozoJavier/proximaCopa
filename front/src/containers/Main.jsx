@@ -6,13 +6,13 @@ import { connect } from 'react-redux';
 import s from './Main.css';
 
 //IMPORT CONTAINERS
-import OrderManagerContainer from './OrderManagerContainer/OrderManagerContainer';
 import NewCategoryContainer from './NewCategoryContainer/NewCategoryContainer';
 import ProductListContainer from './ProductListContainer/ProductListContainer';
 import OneProductContainer from './OneProductContainer/OneProductContainer';
 import AdminPanelContainer from './AdminPanelContainer/AdminPanelContainer';
 import NewProductContainer from './NewProductContainer/NewProductContainer';
 import ProductsGridContainer from './ProductsGrid/ProductsGridContainer';
+import OrdersContainer from './OrdersContainer/OrdersContainer';
 import NavbarContainer from './NavbarContainer/NavbarContainer';
 import RegisterContainer from './Register/RegisterContainer';
 import CheckoutContainer from './Checkout/CheckoutContainer';
@@ -65,13 +65,14 @@ class Main extends React.Component {
 						<Route path='/register' component= { RegisterContainer } />
 						<Route path='/login' component= { LoginContainer } />     
 						<Route path='/carrito' component= { CartContainer } />
-						<Route path='/OneProduct/:id' component= { OneProductContainer } />     
-						<Route path='/newproduct' component= { NewProductContainer } />
+						<Route path='/OneProduct/:id' component= { OneProductContainer } />
+						<Route path='/user' component={AdminPanelContainer} />
 						<Route path='/newcategory' component= { NewCategoryContainer } />
 						<Route path='/product/edit' component= { ProductListContainer } />
-						<Route path='/orders' component= { OrderManagerContainer } />
+						<Route path='/orders' component= { OrdersContainer } />
 						{
-							user.admin == 5 && <Route path='/user' component={AdminPanelContainer} />
+							user.admin == 5 && 
+							<Route path='/newproduct' component= { NewProductContainer } />
 						}
 					</Switch>
 				</div>

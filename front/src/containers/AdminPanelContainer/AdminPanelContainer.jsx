@@ -5,6 +5,5 @@ export default class AdminPanelContainer extends Component {
 	constructor(props){
 		super(props);
 	}
-
-	render= () =>	<AdminPanel />
+	render= () => <AdminPanel/>
 } 

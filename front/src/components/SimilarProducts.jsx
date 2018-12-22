@@ -11,10 +11,7 @@ export default ({vinosSimilares, handleClick, handleClickCart}) => {
 
             <div id={s.listaProductos}>
         {
-            vinosSimilares ? vinosSimilares.map(vino =>
-                    //# Vino necesita
-                    // .productName .price
-                    // FALTA AGREGAR HANDLECLICK para que puedan agregar
+            vinosSimilares[0] ? vinosSimilares.map(vino =>
                     <div key={ vino.productName } className={`${s.singleProduct} ${s.hover}`} >
                     <div  onClick={(e) => handleClick(vino)}>
                         <div className={s.productoimg}>

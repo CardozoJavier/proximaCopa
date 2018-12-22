@@ -1,6 +1,6 @@
 import axios from 'axios'
 import {addProductToOrder} from './OrderActions'
-import { LOG_A_USER, LOGOUT_USER } from '../constants';
+import { LOG_A_USER, LOGOUT_USER, FETCH_USERS } from '../constants';
 
 const setLoggedUser = user => ({
 	type: LOG_A_USER,
@@ -16,6 +16,20 @@ const endSession = () => ({
 		email: ''
 	}
 })
+
+const fetchUsers= (allUsers) => {
+	return {
+		type : FETCH_USERS,
+		allUsers
+	}
+}
+
+export const fetchAllUsers= () => dispatch => {
+	return axios.get('/api/user')
+		.then(res => res.data)
+		.then(users => dispatch(fetchUsers(users)))
+		.catch(e => console.log(e))
+}
 
 
 export const loginUser = (email, password) => dispatch => {
@@ -38,5 +52,4 @@ export const isLogged = () => dispatch => {
 	axios.get('/me')
 	.then(res => dispatch(setLoggedUser(res.data)))
 }
-
 

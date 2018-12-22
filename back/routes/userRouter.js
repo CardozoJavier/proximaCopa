@@ -91,5 +91,10 @@ router.get('/:id', (req,res) => {
 		.catch(e => console.log(e))
 });
 
+router.get('/', (req,res) => {
+	User.findAll({})
+		.then(data => res.send(data))
+		.catch(e => console.log(e))
+});
 
 module.exports = router

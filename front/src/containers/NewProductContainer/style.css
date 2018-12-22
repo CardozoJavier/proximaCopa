@@ -50,11 +50,6 @@
   font-family: "Lato", "Roboto", sans-serif;
 }
 
-.submit{
-	margin: 20px;
-	display: grid;
-  grid-template-columns: auto auto auto;
-}
 
 .label {
     display: block;
@@ -125,17 +120,33 @@
     transform: rotate(45deg);
 }
 
+.submit{
+	/* margin: 20px;
+	display: grid;
+  grid-template-columns: auto auto auto; */
+	display: grid;
+	width: 100%;
+	flex-wrap: wrap;
+  grid-template-columns: auto auto auto;
+  /* font-family: "Lato", "Roboto", sans-serif; */
+	margin: 20px 0;
+}
+
 .btnBack {
   background-color: white;
-  padding: 10px;
+  /* padding: 0 10px; */
   border-radius: 3px;
   border: 2px solid #e1e1e1;
   cursor: pointer;
   transition-duration: 0.2s;
   color: #5a5a5a;
-	margin: 0 30% 0 10%;
+	/* margin: 0 30% 0 10%; */
 	max-width: 100%;
 	min-width: 100%;
+  grid-column-start: 1;
+  grid-column-end: 2;
+	/* margin-bottom: 10px;
+	border-radius: 5px; */
 }
 .btnBack:hover {
   background-color: #f6f6f6;

@@ -1,7 +1,8 @@
-
+import { FETCH_ORDERS } from '../constants/index';
 
 const initialSate ={
-    products: []
+    products : [],
+		orders : []
 };
 
 
@@ -45,7 +46,11 @@ export default (state = initialSate, action) => {
 
         case "SET_CART_FROM_DATA_BASE_TO_STORE":
             return Object.assign({},state, {products: action.storage });
-          default:
+
+        case FETCH_ORDERS:
+						return Object.assign({}, state, { allOrders : action.allOrders });
+
+				default:
             return state;
     }
 

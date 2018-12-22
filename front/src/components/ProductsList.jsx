@@ -274,7 +274,7 @@ function ReactVirtualizedTable({ listProducts, handleClick }) {
           },
 	        {
             width: 120,
-            label: <h2>Precio</h2>,
+            label: <h2>Precio($)</h2>,
             dataKey: 'price',
             numeric: true,
           },

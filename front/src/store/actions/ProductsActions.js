@@ -10,13 +10,13 @@ const selectProduct = function(product){
 }
 
 export const selectSingleProduct = (productId) => {
-    return dispatch => 
-        axios.get(`/api/products/${productId}`)
+    return dispatch => {
+        return axios.get(`/api/products/${productId}`)
         .then( producto => {
             dispatch(selectProduct(producto.data))
         })
         .catch(e => console.error(e))
-    
+		}
 }
 
 // Productos similares:
@@ -29,7 +29,7 @@ const selectSimilarProducts = function(products){
 }
 
 export const fetchSimilarProducts = (productId) => dispatch => {
-    axios.get(`/api/products/getProductsByGrape/${productId}`)
+    return axios.get(`/api/products/getProductsByGrape/${productId}`)
     .then( res => {
         dispatch(selectSimilarProducts(res.data))
     })

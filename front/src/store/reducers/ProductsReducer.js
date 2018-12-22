@@ -9,7 +9,7 @@ const initialSate ={
     grapes: {},
 		allCellars: {},
 		allLines: {},
-		selectedGrapes: {},
+		selectedGrapes: [],
 		productUpdated: {}
 };
 

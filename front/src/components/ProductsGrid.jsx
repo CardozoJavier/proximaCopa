@@ -4,14 +4,14 @@ import styles2 from '../containers/SimilarProducts/styles.css'
 import { Link } from 'react-router-dom';
 
 export default (props) => {
-    const { products, handleClickCart, handleCheckout } = props
+    const { products, handleClickCart, handleCheckout, handleClick } = props
     return (
         <div id={s.listaProductos} className={styles2.listaProductos}>
             {
                 products.length > 0 ? products.map(function(vino, i) {
                     return (
                         <div className={`${s.singleProduct} ${s.hover}`} key={i} >
-                        <div onClick={(e) => props.handleClick(vino)}>
+                        <div onClick={(e) => handleClick(vino)}>
                             <div className={s.productoimg}  >
                                 <img className={s.imgSingle} src={vino.image} alt=""/>
                             </div>
