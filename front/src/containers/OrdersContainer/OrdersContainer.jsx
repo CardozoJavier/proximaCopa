@@ -38,6 +38,7 @@ class OrdersContainer extends Component {
 								date.splice(3,0,'/');
 								orders[i].userId && orders[i].userId == users[j].id 
 								&& usersOrders.push({
+									id : orders[i].id,
 									nOrder : orders[i].id + orders[i].createdAt.split('T')[0].split('-').reverse().join(''),
 									date : date.join(''),
 									user : users[j].firstName + ' ' + users[j].lastName,
@@ -56,9 +57,9 @@ class OrdersContainer extends Component {
 	handleChange(e){
 		// console.log(e.target.value, ' handleChange');
 		// console.log(e.target.id, ' ID');
-		// axios.put('api/orders/:id', {
-		// 	status : e.target.value
-		// })
+		axios.put(`api/orders/${e.target.id}`, {
+			status : e.target.value
+		})
 	}
 	render(){
 		// console.log(this.state.allOrders)

@@ -242,7 +242,7 @@ router.post('/deleteAllProducts', function(req, res){
     //elimina todos los productos de la orden
     Order.findAll({
         where:{
-            status: "guardado",
+            status: "creada",
             userId: req.body.userId
         }
     })
@@ -267,6 +267,12 @@ router.post('/deleteAllProducts', function(req, res){
     .then(data=> res.send(data))
 })
 
+router.put('/:orderId', (req,res) => {
+	Order.findById(req.params.orderId)
+		.then(data => data.update(req.body))
+		.then(() => res.sendStatus(201))
+		.catch(e => console.log(e))
+});
 
 router.get('/', (req,res) => {
 	Order.findAll({})
