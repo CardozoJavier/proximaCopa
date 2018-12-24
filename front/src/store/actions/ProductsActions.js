@@ -103,10 +103,8 @@ const fetchCellars = function(cellars) {
 // Pido todas las bodegas.
 export const fetchAllCellars = () => {
     return dispatch => {
-        return axios.get('/api/cellars')
-        .then( res => {
-						dispatch(fetchCellars(res.data))
-        })
+      return axios.get('/api/cellars')
+        .then(res => dispatch(fetchCellars(res.data)))
         .catch(e => console.log(e))
 		}
 }

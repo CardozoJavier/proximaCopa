@@ -11,6 +11,7 @@ import ProductListContainer from './ProductListContainer/ProductListContainer';
 import OneProductContainer from './OneProductContainer/OneProductContainer';
 import NewProductContainer from './NewProductContainer/NewProductContainer';
 import ProductsGridContainer from './ProductsGrid/ProductsGridContainer';
+import UserPanelContainer from './UserPanelContainer/UserPanelContainer';
 import OrdersContainer from './OrdersContainer/OrdersContainer';
 import NavbarContainer from './NavbarContainer/NavbarContainer';
 import RegisterContainer from './Register/RegisterContainer';
@@ -70,7 +71,7 @@ class Main extends React.Component {
 						<Route path='/OneProduct/:id' component= { OneProductContainer } />
 						
 						{	user.admin == 5 && <Route path='/newproduct' component= { NewProductContainer } /> }
-						{	user.admin == 5 && <Route path='/user' component={AdminSidebar} /> }
+						{	user.admin == 5 && <Route path='/user' component={AdminSidebar} /> || <Route path='/user' component={ UserPanelContainer } /> }
 						{	user.admin == 5 && <Route path='/newcategory' component= { NewCategoryContainer } /> }
 						{	user.admin == 5 && <Route path='/product/edit' component= { ProductListContainer } /> }
 						{	user.admin == 5 && <Route path='/orders' component= { OrdersContainer } /> }

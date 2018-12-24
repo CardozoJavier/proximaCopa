@@ -17,10 +17,7 @@ export const getProductsBySearchNavbar = nombre => {
                 nombre: nombre,
             },
         })
-        .then(res => {
-            console.log(res.data)
-            dispatch(fetchProductsByName(res.data));
-        })
+        .then(res => dispatch(fetchProductsByName(res.data)))
         .catch(e => console.log(e))
 };
 

@@ -14,29 +14,62 @@ const styles = theme => ({
   },
 });
 
-function handleDelete() {
-  alert('You clicked the delete icon.'); // eslint-disable-line no-alert
-}
+// function handleDelete() {
+//   alert('You clicked the delete icon.'); // eslint-disable-line no-alert
+// }
 
 function OutlinedChips(props) {
-  const { classes, allCellars } = props;
-	// console.log(allCellars)	
+  const { classes, allCellars, allLines, allGrapes, handleDelete } = props;
+	// console.log(allGrapes)	
   return (
-		<div>
-			{
-				allCellars[0] && allCellars.map(cellar => {
-					return (
-						<Chip
-							key={ cellar.id }
-							label={ cellar.cellarName }
-							onDelete={ handleDelete }
-							className={ classes.chip }
-							color="primary"
-							variant="outlined"
-						/>
-					)
-				})
-			}
+		<div >
+			<div>
+				{
+					allCellars[0] && allCellars.map((cellar,index) => {
+						return (
+							<Chip
+								key={ cellar.id }
+								label={ cellar.cellarName }
+								onDelete={ () => handleDelete('allCellars','cellars',cellar.id,index) }
+								className={ classes.chip }
+								color="primary"
+								variant="outlined"
+							/>
+						)
+					})
+				}
+			</div>
+			<div>
+				{
+					allLines[0] && allLines.map((line,index) => {
+						return (
+							<Chip
+								key={ line.id }
+								label={ line.lineName }
+								onDelete={ () => handleDelete('allLines','lines',line.id,index) }
+								className={ classes.chip }
+								color="secondary"
+								variant="outlined"
+							/>
+						)
+					})
+				}
+			</div>
+			<div>
+				{
+					allGrapes[0] && allGrapes.map((grape,index) => {
+						return (
+							<Chip
+								key={ grape.id }
+								label={ grape.grapeName }
+								onDelete={ () => handleDelete('allGrapes','grapes',grape.id,index) }
+								className={ classes.chip }
+								variant="outlined"
+							/>
+						)
+					})
+				}
+			</div>
 		</div>
 	)
 }

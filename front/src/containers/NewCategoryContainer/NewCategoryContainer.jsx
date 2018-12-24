@@ -6,7 +6,7 @@ import NewCategory from '../../components/NewCategory'
 import axios from 'axios';
 import CategoryToast from './CategoryToast';
 import CategoriesList from '../../components/CategoriesList';
-import { fetchAllCellars } from '../../store/actions/ProductsActions';
+import { fetchAllCellars, fetchAllLines, getGrapes } from '../../store/actions/ProductsActions';
 
 class NewCategoryContainer extends Component {
 	constructor(props) {
@@ -17,6 +17,9 @@ class NewCategoryContainer extends Component {
 			grapes : '',
 			open : false,
 			status : false,
+			allCellars : [],
+			allGrapes : [],
+			allLines : [],
 		}
 		this.handleSubmit= this.handleSubmit.bind(this);
 		this.handleChange= this.handleChange.bind(this);
@@ -25,7 +28,12 @@ class NewCategoryContainer extends Component {
 	}
 
 	componentDidMount(){
-		this.props.fetchCellars();
+		this.props.fetchCellars()
+			.then(res => this.setState({ allCellars : res.cellars }))
+		this.props.fetchLines()
+			.then(res => this.setState({ allLines : res.lines }))
+		this.props.fetchGrapes()
+			.then(res => this.setState({ allGrapes : res.grapes }))
 	}
 
 	handleChange(e){
@@ -49,17 +57,27 @@ class NewCategoryContainer extends Component {
 		});
 	}
 
-	handleDelete(e){
-		console.log(e.target, ' <==')
+	handleDelete(type,path,id,index){
+		axios.post(`/api/${path}/delete`,{ id })
+			.catch(e => console.log(e))
+		this.state[type].splice(index,1);
+		this.setState({})
 	}
 
 	render() {
 	return (
 		<div style={{"display": "flex", 'height':'100%'}}>
 			<AdminPanelContainer />
-			<NewCategory handleSubmit={ this.handleSubmit } handleChange={ this.handleChange }/>
-			<CategoriesList allCellars={ this.props.allCellars } handleDelete={ this.handleDelete } />
-			<CategoryToast open= { this.state.open } status= { this.state.status } handleClose= { this.handleClose } />
+			<div style={{ 'display':'grid' }}>
+				<NewCategory handleSubmit={ this.handleSubmit } handleChange={ this.handleChange }/>
+				<CategoriesList 
+					handleDelete={ this.handleDelete } 
+					allGrapes={ this.state.allGrapes } 
+					allLines={ this.state.allLines } 
+					allCellars={ this.state.allCellars } 
+				/>
+				<CategoryToast open= { this.state.open } status= { this.state.status } handleClose= { this.handleClose } />
+			</div>
 		</div>
 	)}
 }
@@ -68,14 +86,22 @@ function mapStateToProps(state){
 	return{ 
 		user : state.user,
 		allCellars : state.products.allCellars,
+		allLines : state.products.allLines,
+		allGrapes : state.products.grapes
 	}
 };
 
 function mapDispatchToProps(dispatch){
 	return{ 
 		fetchCellars: () => {
-			dispatch(fetchAllCellars())
-		}
+			return dispatch(fetchAllCellars())
+		},
+		fetchGrapes: () => {
+			return dispatch(getGrapes())
+		},
+		fetchLines: () => {
+			return dispatch(fetchAllLines())
+		},
 	}
 }
 

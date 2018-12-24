@@ -31,6 +31,7 @@ router.post('/email', (req,res) => {
 						}
 					})
 			})
+			.catch(e => console.log(e)) 
 	})
 	Promise.all(data).then(data =>	{
 		// Esto va a ser el contentido del mail con los datos de la venta:
