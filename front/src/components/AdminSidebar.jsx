@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import s from '../containers/AdminPanelContainer/style.css';
 
 export default () => (
-	<div className={ s.sidebar }>
+	<div className={ s.sidebar2 }>
 		<Link to='/orders'>
 				<p>Administración de órdenes</p>
 				<hr/>

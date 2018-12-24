@@ -65,7 +65,7 @@ class OrdersContainer extends Component {
 		// console.log(this.state.allOrders)
 		return (
 			<div className= { s.container }>
-				<AdminPanelContainer />
+				<AdminPanelContainer sidebar={ 's.sidebar2' }/>
 				<Orders users= { this.state.users } orders= { this.state.dataOrders } handleChange= { this.handleChange }/>
 			</div>
 		)

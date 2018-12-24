@@ -3,6 +3,15 @@ const router= express();
 
 var { Grape, Product }= require('../db/models/index');
 
+router.post('/create', (req,res) => {
+	Grape.findOrCreate({
+		where : {
+			grapeName : req.body.value
+		}
+	})
+		.then(data => res.send(data))
+		.catch(e => console.log(e))
+});
 
 router.get('/:productId', (req,res) => {
 	Product.findAll({
@@ -16,12 +25,6 @@ router.get('/', (req,res) => {
 	Grape.findAll({})
 		.then(data => res.send(data))
 });
-
-router.post('/agregarUva', (req,res) =>{
-	//Debe recibir el nombre de la grape
-	console.log(req.body)
-	res.send("ENTRO ACA")
-})
 
 module.exports= router;
 

@@ -1,96 +1,83 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import {connect} from 'react-redux'
-
 
 import AdminPanelContainer from '../AdminPanelContainer/AdminPanelContainer';
 import NewCategory from '../../components/NewCategory'
-import CreateCategoryGrape from '../../components/CreateCategoryGrape'
-import CreateCategoryLine from '../../components/CreateCategoryLine'
-import CreateCategoryCellar from '../../components/CreateCategoryCellar'
-
-import {logoutUser} from '../../store/actions/UserActions'
-import { getProductsBySearchNavbar } from '../../store/actions/FilterActions';
+import axios from 'axios';
+import CategoryToast from './CategoryToast';
+import CategoriesList from '../../components/CategoriesList';
+import { fetchAllCellars } from '../../store/actions/ProductsActions';
 
 class NewCategoryContainer extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            boton: 'ninguno',
-            valorInput: ""
-        }
-        this.logOut = this.logOut.bind(this)
-        this.handleClickSelect = this.handleClickSelect.bind(this)
-        this.handleSubmit = this.handleSubmit.bind(this)
-        this.handleChange = this.handleChange.bind(this) 
-    }
+	constructor(props) {
+		super(props)
+		this.state = {
+			cellars : '',
+			lines : '',
+			grapes : '',
+			open : false,
+			status : false,
+		}
+		this.handleSubmit= this.handleSubmit.bind(this);
+		this.handleChange= this.handleChange.bind(this);
+		this.handleClose= this.handleClose.bind(this);
+		this.handleDelete= this.handleDelete.bind(this);
+	}
 
-    logOut(e){
-        this.props.logoutUser()
-    }
+	componentDidMount(){
+		this.props.fetchCellars();
+	}
 
-    handleClickSelect(val){
-        this.setState({
-            boton: val,
-            valorInput: ""
-        })
-    }
+	handleChange(e){
+		this.setState({
+			[e.target.name]: e.target.value,
+		})
+	}
 
-    handleChange(event){
-        console.log(event.target.value)
-        this.setState({
-            valorInput: event.target.value,
-        })
-        ///api/grapes/agregarUva
-    }
+	handleSubmit(e){
+		e.preventDefault();
+		var type= e.target.name;
+		var value= this.state[type];
+		axios.post(`/api/${type}/create`,{ value })
+			.then(res => res.data[1])
+			.then(status => this.setState({ status, open : true }))
+	}
 
-    handleSubmit(e){
-        e.preventDefault();
-    }
+	handleClose(){
+		this.setState({
+			open : false
+		});
+	}
 
+	handleDelete(e){
+		console.log(e.target, ' <==')
+	}
 
-    render() {
-    //LINEA BODEGA UVA
-    return (
-        <div style={{"display": "flex", 'height':'100%'}}>
-            <AdminPanelContainer />
-            <div id="AgregarCategoriasAdmin" style={{"display": "flex", "flexDirection": "column"}}>
-                <NewCategory handleClickSelect={this.handleClickSelect}/>
-                {
-                    this.state.boton == 'uva' ? <CreateCategoryGrape handleSubmit={this.handleSubmit} handleChange={this.handleChange}/> : null
-                }
-                {
-                    this.state.boton == 'linea' ? <CreateCategoryLine handleSubmit={this.handleSubmit} handleChange={this.handleChange}/> : null
-                }
-                {
-                    this.state.boton == 'bodega' ? <CreateCategoryCellar handleSubmit={this.handleSubmit} handleChange={this.handleChange}/> : null
-                }
-            </div>
-
-        </div>
-    )}
+	render() {
+	return (
+		<div style={{"display": "flex", 'height':'100%'}}>
+			<AdminPanelContainer />
+			<NewCategory handleSubmit={ this.handleSubmit } handleChange={ this.handleChange }/>
+			<CategoriesList allCellars={ this.props.allCellars } handleDelete={ this.handleDelete } />
+			<CategoryToast open= { this.state.open } status= { this.state.status } handleClose= { this.handleClose } />
+		</div>
+	)}
 }
 
 function mapStateToProps(state){
-    return{ 
-        user : state.user,
-        filtrosNavbar: state.products.filteredProducts,
-
-    }
+	return{ 
+		user : state.user,
+		allCellars : state.products.allCellars,
+	}
 };
 
 function mapDispatchToProps(dispatch){
-    return{ 
-      logoutUser: ()=>{
-        dispatch(logoutUser())
-    },
-      getProductsBySearchNavbar:(nombre)=> {
-        dispatch(getProductsBySearchNavbar(nombre))
-      },
-    }
-};
-
-
+	return{ 
+		fetchCellars: () => {
+			dispatch(fetchAllCellars())
+		}
+	}
+}
 
 export default connect(mapStateToProps,mapDispatchToProps)(NewCategoryContainer)
 

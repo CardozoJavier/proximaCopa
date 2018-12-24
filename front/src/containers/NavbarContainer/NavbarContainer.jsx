@@ -23,9 +23,10 @@ class NavbarContainer extends Component {
     // console.log(this.props.user)
   }
   logOut(e){
-    e.preventDefault();
-    this.props.logoutUser()
-    this.props.handleEmptyOrder()
+    // e.preventDefault();
+    this.props.logoutUser();
+    this.props.handleEmptyOrder();
+		this.props.history.push('/');
     }
   handleSubmit() {
     let formatSearch = this.state.searchNavbar

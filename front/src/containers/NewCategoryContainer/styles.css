@@ -1,12 +1,4 @@
-.containerCategorias {
-	height: 100%;
-  width: 1000px;
-}
-.containerCategorias .botones {
-  display: flex;
-  justify-content: center;
-}
-.containerCategorias .botones button {
+.formCreateCategory .botones button {
   background-color: white;
   border: 0px;
   padding: 10px;
@@ -17,7 +9,7 @@
   border: 1px solid #4d7b9c;
   transition-duration: 0.3s;
 }
-.containerCategorias .botones button:hover {
+.formCreateCategory .botones button:hover {
   background-color: #4d7b9c;
   color: white;
   transition-duration: 0.3s;
@@ -48,15 +40,3 @@
   outline: 0px;
   border: 1px solid #82957e;
 }
-.formCreateCategory button {
-  background-color: #4d7b9c;
-  border: 0px;
-  padding: 10px;
-  border-radius: 3px;
-  color: white;
-  margin: 10px;
-  margin-left: 235px;
-  min-width: 100px;
-}
-
-/*# sourceMappingURL=styles.css.map */

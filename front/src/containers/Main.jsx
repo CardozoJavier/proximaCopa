@@ -9,7 +9,6 @@ import s from './Main.css';
 import NewCategoryContainer from './NewCategoryContainer/NewCategoryContainer';
 import ProductListContainer from './ProductListContainer/ProductListContainer';
 import OneProductContainer from './OneProductContainer/OneProductContainer';
-import AdminPanelContainer from './AdminPanelContainer/AdminPanelContainer';
 import NewProductContainer from './NewProductContainer/NewProductContainer';
 import ProductsGridContainer from './ProductsGrid/ProductsGridContainer';
 import OrdersContainer from './OrdersContainer/OrdersContainer';
@@ -19,6 +18,9 @@ import CheckoutContainer from './Checkout/CheckoutContainer';
 import CartContainer from './Cart/CartContainer';
 import LoginContainer from './Login/LoginContainer';
 import Toast1 from './Toasts/toast1';
+
+// IMPORT COMPONENTS
+import AdminSidebar from '../components/AdminSidebar';
 
 //IMPORT ACTIONS STORE
 import { isLogged } from '../store/actions/UserActions'
@@ -66,14 +68,12 @@ class Main extends React.Component {
 						<Route path='/login' component= { LoginContainer } />     
 						<Route path='/carrito' component= { CartContainer } />
 						<Route path='/OneProduct/:id' component= { OneProductContainer } />
-						<Route path='/user' component={AdminPanelContainer} />
-						<Route path='/newcategory' component= { NewCategoryContainer } />
-						<Route path='/product/edit' component= { ProductListContainer } />
-						<Route path='/orders' component= { OrdersContainer } />
-						{
-							user.admin == 5 && 
-							<Route path='/newproduct' component= { NewProductContainer } />
-						}
+						
+						{	user.admin == 5 && <Route path='/newproduct' component= { NewProductContainer } /> }
+						{	user.admin == 5 && <Route path='/user' component={AdminSidebar} /> }
+						{	user.admin == 5 && <Route path='/newcategory' component= { NewCategoryContainer } /> }
+						{	user.admin == 5 && <Route path='/product/edit' component= { ProductListContainer } /> }
+						{	user.admin == 5 && <Route path='/orders' component= { OrdersContainer } /> }
 					</Switch>
 				</div>
 			</div>   
