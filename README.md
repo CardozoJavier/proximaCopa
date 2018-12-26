@@ -5,7 +5,7 @@ Proyecto desplegado en el tramo final de nuestro coding bootcamp, como parte de 
 
 Conformados en un equipo de 4 integrantes + 1 scrum master, llevamos a cabo tareas que abarcaron trabajar de punta a punta el stack tecnológico javascript para concluir en una single page application de uso real, dedicada a la venta de vinos y bebidas.
 
-El back-end fue desarrollado en **Node.js** con su framework **Express.js**, para la persistencia de datos utilizamos **PostgreSQL** y **Sequelize** como ORM, y **Passport** para autenticación. 
+El back-end fue desarrollado en **Node.js** con su framework **Express.js**, utilizamos **PostgreSQL** y **Sequelize** como ORM para la persistencia de datos, y **Passport** para autenticación. 
 
 Para front-end trabajamos con **React.js**, **Redux** (react-redux), **Babel** (compiler), **Material-ui** (UI), y por otro lado **Webpack** nos sirvió de bundler.
 
