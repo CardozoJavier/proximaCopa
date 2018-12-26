@@ -12,7 +12,7 @@ Para front-end trabajamos con **React.js**, **Redux** (react-redux), **Babel** (
 El proyecto se extendió durante un período de 6 semanas.
 
 Integrantes:
-[Diego Fernandez](https://github.com/diegofernandezfontana)
-[Gonzalo Espeche](https://github.com/gonpeche)
-[Javier Cardozo](https://github.com/CardozoJavier)
-[Santiago Fernandez](https://github.com/santiagofz)
+* [Diego Fernandez](https://github.com/diegofernandezfontana)
+* [Gonzalo Espeche](https://github.com/gonpeche)
+* [Javier Cardozo](https://github.com/CardozoJavier)
+* [Santiago Fernandez](https://github.com/santiagofz)
