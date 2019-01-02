@@ -6,7 +6,6 @@ import axios from 'axios';
 
 import AdminPanelContainer from '../AdminPanelContainer/AdminPanelContainer';
 import NewProduct from '../../components/NewProduct';
-import App from './ImageUpload';
 import s from '../AdminPanelContainer/style.css';
 import Toast from './Toast';
 import { createProduct, getGrapes } from '../../store/actions/ProductsActions';
@@ -32,14 +31,12 @@ class NewProductContainer extends Component{
 			wrongLine: false,
 			wrongCellar: false,
 			open: false,
-			uploader: false
 		}
 		this.handleChange= this.handleChange.bind(this);
 		this.handleClick= this.handleClick.bind(this);
 		this.isChecked= this.isChecked.bind(this);
 		this.checkValue= this.checkValue.bind(this);
 		this.handleClose= this.handleClose.bind(this);
-		this.imageUpload= this.imageUpload.bind(this);
 		this.clear= this.clear.bind(this);
 	}
 
@@ -121,12 +118,6 @@ class NewProductContainer extends Component{
 		});
   };
 
-	imageUpload(){
-		this.setState({
-			uploader : !this.state.uploader
-		})
-	}
-
 	clear(){
 		this.setState({
 			productName : '',
@@ -148,7 +139,6 @@ class NewProductContainer extends Component{
 					
 					<NewProduct
 						clear= { this.clear }
-						imageUpload= { this.imageUpload }
 						wrongLine= { this.state.wrongLine && <p>El campo 'Linea' es obligatorio. Por favor elige entre las opciones</p> }
 						wrongCellar= { this.state.wrongCellar && <p>El campo 'Bodega' es obligatorio. Por favor elige entre las opciones</p> }
 						checkValue= {this.checkValue}

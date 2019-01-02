@@ -84,7 +84,7 @@ router.post('/email', (req,res) => {
 router.get('/allOrders', function(req, res){
         order.findAll({
             where:{
-                status: {[Op.notILike]:"guardado"}
+                status: {[Op.notILike]:"creada"}
             }
         })
  })  
@@ -138,7 +138,7 @@ router.post('/addProductToOrder', function(req, res){
   
     Order.findOrCreate({
         where:{
-            status: "guardado",
+            status: "creada",
             userId: req.body.userId
         }
     })
@@ -174,7 +174,7 @@ router.post('/removeProductFromOrder', function(req, res){
     
     Order.findAll({
         where:{
-            status: "guardado",
+            status: "creada",
             userId: req.body.userId
         }
     })
@@ -215,7 +215,7 @@ router.post('/deleteProductFromOrder', function(req, res){
  
     Order.findAll({
         where:{
-            status: "guardado",
+            status: "creada",
             userId: req.body.userId,
         }
     })
@@ -269,6 +269,7 @@ router.post('/deleteAllProducts', function(req, res){
 })
 
 router.put('/:orderId', (req,res) => {
+	console.log(req.body)
 	Order.findById(req.params.orderId)
 		.then(data => data.update(req.body))
 		.then(() => res.sendStatus(201))

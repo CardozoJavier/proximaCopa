@@ -74,7 +74,7 @@ class SingleProduct extends React.Component {
                         <MySnackbarContentWrapper
                             onClose={this.handleCloseToast}
                             variant="success"
-                            message="El vino se agrego al carrito!"
+                            message="El vino se agregó al carrito!"
                         />
                     </Snackbar>
             </div>

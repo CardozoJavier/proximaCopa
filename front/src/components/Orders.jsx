@@ -55,7 +55,6 @@ const styles = theme => ({
 
 function CustomizedTable(props) {
   const { classes, handleChange, orders } = props;
-	// console.log(props, ' <==')
   return (
     <Paper className= { classes.root }>
       <Table className={classes.table}>
@@ -71,6 +70,7 @@ function CustomizedTable(props) {
         </TableHead>
         <TableBody>
           {orders[0] && orders.map((order,i) => {
+						console.log('ID: ', order.id, ' STATUS: ', order.status)
 						return (
               <TableRow className={classes.row} key={order.nOrder}>
                 <CustomTableCell component="th" scope="row">{ order.nOrder }</CustomTableCell>
@@ -81,9 +81,9 @@ function CustomizedTable(props) {
                 <CustomTableCell >
 									<select id= { order.id } onChange= { handleChange } align= 'right' name="select">
 										<option defaultValue= { order.status }>{ order.status }</option> 
-										<option value="creada">CREADA</option> 
-										<option value="completada">COMPLETADA</option>
-										<option value="cancelada">CANCELADA</option>
+										{ order.status != 'CREADA' && <option value="creada"> CREADA </option> }
+										{ order.status != 'COMPLETADA' && <option value="completada"> COMPLETADA </option> }
+										{ order.status != 'CANCELADA' && <option value="cancelada"> CANCELADA </option> }
 									</select>
 								</CustomTableCell>
               </TableRow>

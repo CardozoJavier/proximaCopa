@@ -31,7 +31,7 @@ function Review(props) {
       <List disablePadding>
         {products.products.map(product => (
           <ListItem className={classes.listItem} key={product.product.id}>
-            <ListItemText primary={`${product.product.productName} (x${product.cantidad})`} secondary={product.product.description} />
+            <ListItemText style={{ 'max-width':'500px' }} primary={`${product.product.productName} (x${product.cantidad})`} secondary={product.product.description} />
             {product.product.cantidad}
             <Typography variant="body2">$ {product.product.price}</Typography>
           </ListItem>

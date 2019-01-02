@@ -148,6 +148,29 @@ var grape= [
 'Blend de Malbec'
 ]
 
+var images = [
+	' https://tonelprivado.vteximg.com.br/arquivos/ids/165309-1000-1000/Altocedro-Gran-Reserva-750-ml-Malbec-300264.jpg?v=635774868271300000',
+	' https://tonelprivado.vteximg.com.br/arquivos/ids/171727-1000-1000/Andeluna-Pasionado-De-4-Cepas-.-Blend-.-750-ml-115014.jpg?v=636162801043000000',
+	'https://http2.mlstatic.com/vino-antonio-mas-malbec-single-vineyard-D_NQ_NP_765608-MLA25844627628_082017-F.jpg',
+	'https://tonelprivado.vteximg.com.br/arquivos/ids/158139-445-445/Barrandica-117072.jpg?v=635460668107930000',
+	'http://www.bodegadeldesierto.com.ar/wp-content/uploads/2015/12/Desierto-Pampa__malbec_2013_.jpg',
+	'https://www.espaciovino.com.ar/media/default/0001/54/thumb_53088_default_medium.jpeg',
+	'https://www.espaciovino.com.ar/media/default/0001/59/thumb_58380_default_medium.jpeg',
+	'https://www.espaciovino.com.ar/media/default/0001/56/thumb_55658_default_medium.jpeg',
+	'https://http2.mlstatic.com/S_217021-MLA20685842313_042016-O.jpg',
+	'https://http2.mlstatic.com/casarena-dna-malbec-vino-tinto-lujan-de-cuyo-mendoza-D_NQ_NP_772801-MLA20396277095_082015-F.jpg',
+	'https://www.espaciovino.com.ar/media/default/0001/56/thumb_55732_default_medium.jpeg',
+	'https://http2.mlstatic.com/vino-cicchitti-gran-reserva-malbec-bodega-cicchitti-D_NQ_NP_849811-MLA26664298809_012018-F.jpg',
+	'https://www.espaciovino.com.ar/media/default/0001/59/thumb_58290_default_medium.jpeg',
+	'https://super.walmart.com.mx/images/product-images/img_large/00780432063700L.jpg',
+	'https://www.espaciovino.com.ar/media/default/0001/57/thumb_56782_default_medium.jpeg',
+	'https://www.espaciovino.com.ar/media/default/0001/55/thumb_54243_default_medium.jpeg',
+	'https://www.espaciovino.com.ar/media/default/0001/55/thumb_54294_default_medium.jpeg',
+	'https://www.espaciovino.com.ar/media/default/0001/57/thumb_56044_default_medium.jpeg',
+	'https://http2.mlstatic.com/vino-foster-reserva-bonarda-bodega-enrique-foster-D_NQ_NP_780884-MLA26664317610_012018-F.jpg',
+	'https://www.espaciovino.com.ar/media/default/0001/53/thumb_52910_default_medium.jpeg',
+]
+
 var años= ['2001','2002','2003','2004','2005','2006','2007','2008','2009','2010','2011','2012','2013','2014','2015','2016','2017','2018','2019','2020',];
 var order= ['creada', 'cancelada', 'completada'];
 
@@ -160,7 +183,7 @@ const user= User.create({
 	email : 'pogoperez@gmail.com',
 	// phone : 1122124424,
 	password : 'holapogo',
-	admin : 0
+	admin : 5
 });
 
 var creationPromises = [];
@@ -172,7 +195,7 @@ for (var i=0; i < 20; i++){
 		stock : 4 + i*3,
 		price : 100 + i*14,
 		description : 'Descripcion del vino blabla',
-		image : 'https://sgfm.elcorteingles.es/SGFM/dctm/MEDIA03/201703/21/00118703100133____3__600x600.jpg'
+		image : images[i]
 
 	});
 	const cellarProm = Cellar.create({
@@ -295,25 +318,25 @@ Promise.all(creationPromises).then(elements => {
 
 	// En la tabla products, tenemos un campo 'cellarId' que nos indica a que cellar pertenece cada product.		
 	.then(data => cellars[0].addProduct(products[0]))
-	.then(data => cellars[0].addProduct(products[1]))
-	.then(data => cellars[0].addProduct(products[2]))
-	.then(data => cellars[1].addProduct(products[3]))
-	.then(data => cellars[1].addProduct(products[4]))
-	.then(data => cellars[2].addProduct(products[5]))
-	.then(data => cellars[2].addProduct(products[6]))
-	.then(data => cellars[3].addProduct(products[7]))
-	.then(data => cellars[4].addProduct(products[8]))
-	.then(data => cellars[1].addProduct(products[9]))
-	.then(data => cellars[1].addProduct(products[10]))
-	.then(data => cellars[2].addProduct(products[11]))
-	.then(data => cellars[2].addProduct(products[12]))
-	.then(data => cellars[3].addProduct(products[13]))
-	.then(data => cellars[4].addProduct(products[14]))
-	.then(data => cellars[1].addProduct(products[15]))
-	.then(data => cellars[2].addProduct(products[16]))
-	.then(data => cellars[2].addProduct(products[17]))
-	.then(data => cellars[3].addProduct(products[18]))
-	.then(data => cellars[4].addProduct(products[19]))
+	.then(data => cellars[1].addProduct(products[1]))
+	.then(data => cellars[2].addProduct(products[2]))
+	.then(data => cellars[3].addProduct(products[3]))
+	.then(data => cellars[4].addProduct(products[4]))
+	.then(data => cellars[5].addProduct(products[5]))
+	.then(data => cellars[6].addProduct(products[6]))
+	.then(data => cellars[7].addProduct(products[7]))
+	.then(data => cellars[8].addProduct(products[8]))
+	.then(data => cellars[9].addProduct(products[9]))
+	.then(data => cellars[10].addProduct(products[10]))
+	.then(data => cellars[11].addProduct(products[11]))
+	.then(data => cellars[12].addProduct(products[12]))
+	.then(data => cellars[13].addProduct(products[13]))
+	.then(data => cellars[14].addProduct(products[14]))
+	.then(data => cellars[15].addProduct(products[15]))
+	.then(data => cellars[16].addProduct(products[16]))
+	.then(data => cellars[17].addProduct(products[17]))
+	.then(data => cellars[18].addProduct(products[18]))
+	.then(data => cellars[19].addProduct(products[19]))
 
 	// En la tabla lines, tenemos un campo 'cellarId' que nos indica a que cellar pertenece cada line.
 	.then(data => cellars[0].addLine(lines[0]))
@@ -416,24 +439,24 @@ Promise.all(creationPromises).then(elements => {
 	// Relacionamos productos a lineas:
 	.then(data => lines[0].addProduct(products[0]))
 	.then(data => lines[1].addProduct(products[1]))
-	.then(data => lines[1].addProduct(products[2]))
+	.then(data => lines[2].addProduct(products[2]))
 	.then(data => lines[3].addProduct(products[3]))
-	.then(data => lines[3].addProduct(products[4]))
-	.then(data => lines[4].addProduct(products[5]))
-	.then(data => lines[3].addProduct(products[6]))
-	.then(data => lines[2].addProduct(products[7]))
-	.then(data => lines[5].addProduct(products[8]))
-	.then(data => lines[7].addProduct(products[9]))
-	.then(data => lines[7].addProduct(products[10]))
-	.then(data => lines[8].addProduct(products[11]))
-	.then(data => lines[9].addProduct(products[12]))
-	.then(data => lines[10].addProduct(products[13]))
-	.then(data => lines[11].addProduct(products[14]))
-	.then(data => lines[7].addProduct(products[15]))
-	.then(data => lines[8].addProduct(products[16]))
-	.then(data => lines[9].addProduct(products[17]))
-	.then(data => lines[10].addProduct(products[18]))
-	.then(data => lines[11].addProduct(products[19]))
+	.then(data => lines[4].addProduct(products[4]))
+	.then(data => lines[5].addProduct(products[5]))
+	.then(data => lines[6].addProduct(products[6]))
+	.then(data => lines[7].addProduct(products[7]))
+	.then(data => lines[8].addProduct(products[8]))
+	.then(data => lines[9].addProduct(products[9]))
+	.then(data => lines[10].addProduct(products[10]))
+	.then(data => lines[11].addProduct(products[11]))
+	.then(data => lines[12].addProduct(products[12]))
+	.then(data => lines[13].addProduct(products[13]))
+	.then(data => lines[14].addProduct(products[14]))
+	.then(data => lines[15].addProduct(products[15]))
+	.then(data => lines[16].addProduct(products[16]))
+	.then(data => lines[17].addProduct(products[17]))
+	.then(data => lines[18].addProduct(products[18]))
+	.then(data => lines[19].addProduct(products[19]))
 
 	
 	.then(data => console.log('=================== PRODUCTOS CARGADOS A LA BASE DE DATOS ===================='))

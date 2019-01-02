@@ -16,11 +16,11 @@ function PaymentForm(props) {
         :
         <div>
           <Typography variant="h5" gutterBottom>
-            ¡Bien! Ya estas a un paso de disfrutar de unos buenos vinitos. 
+            ¡Bien! Ya estas a un paso de disfrutar de unos buenos vinos. 
           </Typography>
 
           <Typography variant="subtitle1" gutterBottom>
-            Ahora necesitamos pedirte algunos datos personales así nos podemos poner en contacto con vos para acordar la entrega.
+            Ahora necesitamos pedirte algunos datos personales así nos ponemos en contacto con vos para acordar la entrega.
           </Typography>        
         </div>
       }

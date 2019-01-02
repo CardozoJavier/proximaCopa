@@ -58,7 +58,7 @@ class OrdersContainer extends Component {
 		// console.log(e.target.value, ' handleChange');
 		// console.log(e.target.id, ' ID');
 		axios.put(`api/orders/${e.target.id}`, {
-			status : e.target.value
+			status : e.target.value.toLowerCase()
 		})
 	}
 	render(){

@@ -137,7 +137,7 @@ class ProductsGridContainer extends Component {
                         <MySnackbarContentWrapper
                             onClose={this.handleClose}
                             variant="success"
-                            message="El vino se agrego al carrito!"
+                            message="El vino se agregó al carrito!"
                         />
                         </Snackbar>
                 </div>
