@@ -171,9 +171,8 @@ var images = [
 	'https://www.espaciovino.com.ar/media/default/0001/53/thumb_52910_default_medium.jpeg',
 ]
 
-var años= ['2001','2002','2003','2004','2005','2006','2007','2008','2009','2010','2011','2012','2013','2014','2015','2016','2017','2018','2019','2020',];
+var años= ['2001','2002','2003','2004','2005','2006','2007','2008','2009','2010','2011','2012','2013','2014','2015','2016','2017','2018','2019','2017',];
 var order= ['creada', 'cancelada', 'completada'];
-
 
 
 
@@ -183,7 +182,7 @@ const user= User.create({
 	email : 'pogoperez@gmail.com',
 	// phone : 1122124424,
 	password : 'holapogo',
-	admin : 5
+	access : 5
 });
 
 var creationPromises = [];
@@ -194,7 +193,7 @@ for (var i=0; i < 20; i++){
 		year : años[i],
 		stock : 4 + i*3,
 		price : 100 + i*14,
-		description : 'Descripcion del vino blabla',
+		description : 'Este vino refleja la pasión por crear grandes vinos en una de las mejores regiones del 			mundo para cultivar Malbec: La Consulta en el Valle de Uco. Las uvas fueron cuidadosamente seleccionadas 	de viñas maduras (7 a 49 años de edad), fermentadas en pequeñas vasijas de concreto y 30 % del vino fue 	añejado 8 meses en barricas de roble francés para obtener una concentración balanceada de color, aromas, 	y sabores a frutas',
 		image : images[i]
 
 	});
@@ -208,11 +207,11 @@ for (var i=0; i < 20; i++){
 		lineName : line[i]
 	});
 	const orderProm = Order.create({
-		status : order[Math.floor(Math.random() * 5)],
-		// date : Sequelize.NOW,
-		importe : 45 * (i+1),
-		address : 'calle falsa ' + i*11,
-		phone : '11210232'+i*10
+		status : order[Math.floor(Math.random() * 3)],
+		date : '24/12/2018',
+		// importe : 45 * (i+1),
+		// address : 'calle falsa ' + i*11,
+		// phone : '11210232'+i*10
 	});
 	const elabProm= Elaboracion.create({
 		fecha: años[i]

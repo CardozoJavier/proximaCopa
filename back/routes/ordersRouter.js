@@ -10,6 +10,9 @@ var mailgun= new Mailgun({ apiKey, domain });
 
 
 router.post('/email', (req,res) => {
+	console.log(req.body, ' <===')
+	// req.body.user tenemos la info del user.
+	// req.body.order tenemos info de la order.
 	var total= 0;
 	var data= req.body.order.products.map(product => {
 			total += product.product.price * product.cantidad;
@@ -81,13 +84,7 @@ router.post('/email', (req,res) => {
    
 //     res.send(console.log("orden creada"))    
 // })
-router.get('/allOrders', function(req, res){
-        order.findAll({
-            where:{
-                status: {[Op.notILike]:"creada"}
-            }
-        })
- })  
+
 // router.get('/cartOfUser/:userId', function(req, res){
 //     Order.findAll({
 //         where:{
@@ -127,6 +124,26 @@ router.get('/allOrders', function(req, res){
 //     )
 //     .then(prod=> res.send(prod))
 // })  
+
+
+
+
+router.post('/add-product', (req,res) => {
+	Order.findOrCreate({
+		where : {
+			status : 'creada',
+			include : [{
+				model : User,
+				where : {
+					id : req.body.user.userId
+				}
+			}]
+		}
+	})
+});
+
+
+
 
 
 router.post('/addProductToOrder', function(req, res){

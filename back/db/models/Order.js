@@ -5,24 +5,12 @@ const Order = db.define('order', {
     status: {
         type: Sequelize.ENUM('creada', 'cancelada', 'completada'),
     },
-    date:{
-        type: Sequelize.DATE
+    date: {
+        type: Sequelize.STRING,
     },
-   	// total:{
-    //     type: Sequelize.INTEGER
-    // },
-    // address:{
-    //     type:Sequelize.STRING,
-    // },
-    // city:{
-    //     type:Sequelize.STRING
-    // },
-    // state:{
-    //     type:Sequelize.STRING
-    // },  
-    // phone:{
-    //     type:Sequelize.STRING
-    // }  
+		// ref: {
+		// 	type : Sequelize.STRING,
+		// }
 });
 
 module.exports = Order;

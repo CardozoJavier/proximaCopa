@@ -29,7 +29,7 @@ const User = db.define('user', {
             // }
         }
     },   
-    admin: {
+    access: {
         type: Sequelize.INTEGER,
         defaultValue: 0,
     },

@@ -77,12 +77,12 @@ const theme = createMuiTheme({
 });
 
 function CustomizedInputs(props) {
-  const { classes, user, logOut } = props;
+  const { classes, user, logOut, handleHome } = props;
 
   return (
     <div className={s.container}>             
       <div className={s.leftSideNavbar}>
-        <li> <Link to="/">HOME</Link></li> 
+        <li> <Link to="/" onClick= { handleHome }>HOME</Link></li> 
         <div className={s.profile_Navbar}>
             {user.firstName && <Link to="/user"> {user.firstName} </Link> }
         </div>         

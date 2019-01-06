@@ -70,11 +70,11 @@ class Main extends React.Component {
 						<Route path='/carrito' component= { CartContainer } />
 						<Route path='/OneProduct/:id' component= { OneProductContainer } />
 						
-						{	user.admin == 5 && <Route path='/newproduct' component= { NewProductContainer } /> }
-						{	user.admin == 5 && <Route path='/user' component={AdminSidebar} /> || <Route path='/user' component={ UserPanelContainer } /> }
-						{	user.admin == 5 && <Route path='/newcategory' component= { NewCategoryContainer } /> }
-						{	user.admin == 5 && <Route path='/product/edit' component= { ProductListContainer } /> }
-						{	user.admin == 5 && <Route path='/orders' component= { OrdersContainer } /> }
+						{	user.access === 5 && <Route path='/newproduct' component= { NewProductContainer } /> }
+						{	user.access === 5 && <Route path='/user' component={AdminSidebar} /> || <Route path='/user' component={ UserPanelContainer } /> }
+						{	user.access === 5 && <Route path='/newcategory' component= { NewCategoryContainer } /> }
+						{	user.access === 5 && <Route path='/product/edit' component= { ProductListContainer } /> }
+						{	user.access === 5 && <Route path='/orders' component= { OrdersContainer } /> }
 					</Switch>
 				</div>
 			</div>   

@@ -22,7 +22,7 @@ export default () => (
 		</Link>
 		<Link to='/accounts'>
 				<p>Configuración de cuentas</p>
-				<hr/>
+				{/* <hr/> */}
 		</Link>
 	</div>
 )

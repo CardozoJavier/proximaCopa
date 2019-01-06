@@ -30,9 +30,8 @@ const selectSimilarProducts = function(products){
 
 export const fetchSimilarProducts = (productId) => dispatch => {
     return axios.get(`/api/products/getProductsByGrape/${productId}`)
-    .then( res => {
-        dispatch(selectSimilarProducts(res.data))
-    })
+    .then(res => res.data.filter((e) => e.id != productId))
+		.then(similarProducts => dispatch(selectSimilarProducts(similarProducts)))
     .catch(e => console.log(e))
 }
 

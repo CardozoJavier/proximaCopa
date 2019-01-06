@@ -57,24 +57,14 @@ export const handleEmptyOrder = (user) => {
        
     }
 }
-
-export const addProductToOrder = (product, user) => {
-    return (dispatch, getState) => {
-        dispatch(add_product_to_order(product))
-        setLocalStorage(getState())
-        if(user.firstName) addProductToDataBase(product, user)
-        else {console.log("no loggeado")}
-        
-    }
-}
 export const removeProductFromOrder = (product, user)=>{
   //resta una unidad del producto de la orden
     return(dispatch, getState)=>{
         dispatch(remove_product_from_order(product))
         setLocalStorage(getState())
         if(user.firstName){
-            deleteOneProductFromDataBase(product, user)}
-        else {console.log("no loggeado")}
+					deleteOneProductFromDataBase(product, user)
+				}
     }
 }
 export const deleteProductFromOrder=(product, user)=>{
@@ -83,8 +73,8 @@ export const deleteProductFromOrder=(product, user)=>{
         dispatch(delete_product_from_order(product))
         setLocalStorage(getState())
         if(user.firstName){
-            deleteProductFromDataBase(product, user)}
-        else {console.log("no loggeado")}
+          deleteProductFromDataBase(product, user)
+				}
     }
 }
 export const setStateByStorage=(storage)=>{
@@ -92,12 +82,6 @@ export const setStateByStorage=(storage)=>{
             dispatch(add_store_to_state(storage))
     }
 }
-export const addProductToDataBase=(product, user) =>{
-         axios.post('/api/orders/addProductToOrder',{
-           userId :user.id,
-           productId:product.id
-        }) 
-    }
 export const deleteOneProductFromDataBase=(product, user)=>{
     axios.post('/api/orders/removeProductFromOrder',{
         userId :user.id,
@@ -151,3 +135,43 @@ export const fetchAllOrders= () => dispatch => {
 		.then(orders => dispatch(fetchOrders(orders)))
 }
 
+export const addProductToOrder = (product, user) => {
+    return (dispatch, getState) => {
+        dispatch(add_product_to_order(product))
+        setLocalStorage(getState())
+        if(user.firstName){
+					addProductToDataBase(product, user)
+				}
+    }
+}
+
+export const addProductToDataBase=(product, user) =>{
+		axios.post('/api/orders/addProductToOrder',{
+			userId :user.id,
+			productId:product.id
+	}) 
+}
+// export const addProductToDataBase=(product, user) =>{
+// 		axios.post('/api/orders/add-product',{
+// 			userId :user.id,
+// 			productId:product.id
+// 	}) 
+// }
+
+// Funcionando al 06-01-19
+// export const addProductToOrder = (product, user) => {
+//     return (dispatch, getState) => {
+//         dispatch(add_product_to_order(product))
+//         setLocalStorage(getState())
+//         if(user.firstName){
+// 					addProductToDataBase(product, user)
+// 				}
+//     }
+// }
+
+// export const addProductToDataBase=(product, user) =>{
+// 		axios.post('/api/orders/addProductToOrder',{
+// 			userId :user.id,
+// 			productId:product.id
+// 	}) 
+// }

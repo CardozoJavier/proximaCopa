@@ -22,9 +22,6 @@ const CustomTableCell = withStyles(theme => ({
 
 const styles = theme => ({
   root: {
-    // width: '100%',
-    // marginTop: theme.spacing.unit * 3,
-    // overflowX: 'auto',
 		margin: '1% 2%'
   },
   table: {
@@ -32,26 +29,7 @@ const styles = theme => ({
 		textAlign : 'center',
 		margin : 'auto'
 	},
-  // row: {
-  //   '&:nth-of-type(odd)': {
-  //     backgroundColor: theme.palette.background.default,
-  //   },
-  // },
 });
-
-// let id = 0;
-// function createData(name, calories, fat, carbs, protein) {
-//   id += 1;
-//   return { id, name, calories, fat, carbs, protein };
-// }
-
-// const rows = [
-//   createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-//   createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-//   createData('Eclair', 262, 16.0, 24, 6.0),
-//   createData('Cupcake', 305, 3.7, 67, 4.3),
-//   createData('Gingerbread', 356, 16.0, 49, 3.9),
-// ];
 
 function CustomizedTable(props) {
   const { classes, handleChange, orders } = props;
@@ -70,7 +48,6 @@ function CustomizedTable(props) {
         </TableHead>
         <TableBody>
           {orders[0] && orders.map((order,i) => {
-						console.log('ID: ', order.id, ' STATUS: ', order.status)
 						return (
               <TableRow className={classes.row} key={order.nOrder}>
                 <CustomTableCell component="th" scope="row">{ order.nOrder }</CustomTableCell>

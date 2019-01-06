@@ -114,7 +114,8 @@ class ProductsGridContainer extends Component {
                         <h2 style={{ color: '#040404', fontWeight: 100, textAlign: "center", paddingTop: "20px", fontFamily: "Lato Roboto sans-serif" }}>  No se encontraron vinos. </h2> :
                         (
                             <ProductsGrid 
-                                products={this.props.filtrosNavbar.length > 0 ?
+                                products={
+																	this.props.filtrosNavbar.length > 0 ?
                                     this.props.filtrosNavbar : 
                                     this.props.allProducts
                                 }

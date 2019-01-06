@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import {connect} from 'react-redux'
 
-
 import Navbar from '../../components/Navbar';
 import {logoutUser} from '../../store/actions/UserActions'
 import {handleEmptyOrder} from '../../store/actions/OrderActions'
@@ -15,15 +14,15 @@ class NavbarContainer extends Component {
     this.state = {
       searchNavbar: ''
     }
-    this.handleChange = this.handleChange.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
-    this.logOut = this.logOut.bind(this)
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.logOut = this.logOut.bind(this);
+		this.handleHome = this.handleHome.bind(this);
   }
   componentDidMount(){
     // console.log(this.props.user)
   }
   logOut(e){
-    // e.preventDefault();
     this.props.logoutUser();
     this.props.handleEmptyOrder();
 		this.props.history.push('/');
@@ -35,7 +34,6 @@ class NavbarContainer extends Component {
       function(g0,g1,g2){return g1.toUpperCase() + g2.toLowerCase();});
 
     this.props.getProductsBySearchNavbar(formatSearch);
-    // this.props.history.push('/productos');
   }
 
   handleChange(e) {
@@ -44,50 +42,22 @@ class NavbarContainer extends Component {
     });
   }
 
+	handleHome(e){
+    this.props.getProductsBySearchNavbar('');
+	}
+
   render() {
     const user = this.props.user
    
     return (
 
       <Navbar
-      handleChange={this.handleChange}
-      handleSubmit={this.handleSubmit}
-      logOut={this.logOut}
-      user={user}
+      	handleChange= { this.handleChange }
+      	handleSubmit= { this.handleSubmit }
+      	handleHome = { this.handleHome }
+				logOut= { this.logOut }
+      	user= { user }
       />
-      // <div className={s.container}>
-              
-      //   <div className={s.leftSideNavbar}>
-      //     <li> <Link to="/">HOME</Link></li>          
-      //   </div>
-
-      //   <div className={s.middleNavbar}>
-      //     <NavbarInput 
-      //       handleChange={this.handleChange}
-      //       handleSubmit={this.handleSubmit}
-      //     />
-      //   </div>
-
-      //   <div className={s.rightSideNavbar}>
-        
-      //   <div>
-      
-      //   {(user.admin )&& <button> ADMIN </button>}
-      //     <li> <Link to="/checkout">CHECKOUT</Link></li>          
-      //   </div>
-
-      //   <div className={s.rightSideNavbar}>
-      //     <ul>
-      //     {(user.firstName) && <button onClick={this.logOut}>Logout </button> }
-      //     {!(user.firstName) &&  <Link to="/login"> LOGIN  </Link>}
-      //     {!(user.firstName) &&   <Link to="/register">  REGISTER </Link>}
-      //     </ul>
-      //     <div><ShoppingCart /></div>
-          
-      //   </div>
-
-      // </div>
-      // </div>
     )
   }
 }
