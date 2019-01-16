@@ -11,6 +11,12 @@ export const LOG_A_USER= 'LOG_A_USER';
 export const LOGOUT_USER= 'LOGOUT_USER';
 export const FETCH_ORDERS= 'FETCH_ORDERS';
 export const FETCH_USERS= 'FETCH_USERS';
+export const SET_CART= 'SET_CART';
+export const ADD_TO_ORDER= 'ADD_TO_ORDER';
+export const REMOVE_FROM_ORDER = 'REMOVE_FROM_ORDER';
+export const DELETE_FROM_ORDER= 'DELETE_FROM_ORDER';
+export const ADD_STORAGE_TO_STATE= 'ADD_STORAGE_TO_STATE';
+export const EMPTY_CART= 'EMPTY_CART';
 
 // Render inicial:
 export const FETCH_ALL_PRODUCTS = 'FETCH_ALL_PRODUCTS'

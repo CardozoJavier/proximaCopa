@@ -2,7 +2,12 @@
 import React from 'react';
 import {connect} from 'react-redux'
 import Carrito from '../../components/Carrito'
-import {addProductToOrder, removeProductFromOrder, deleteProductFromOrder, handleEmptyOrder} from '../../store/actions/OrderActions'
+import {
+	addProductToOrder, 
+	removeProductFromOrder, 
+	deleteProductFromOrder, 
+	handleEmptyOrder
+} from '../../store/actions/OrderActions'
 
 class cartContainer extends React.Component{
 	constructor(props){

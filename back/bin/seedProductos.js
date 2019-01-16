@@ -128,7 +128,6 @@ var line= [
 var grape= [
 'Blend',
 'Malbec',
-'Cabernet Sauvignon',
 'Malbec Selection',
 'Pinot Noir',
 'Pinot Noir Rose',
@@ -144,8 +143,9 @@ var grape= [
 'Malbec Rosé',
 'Sauvignon Blanc',
 'Viognier',
-'Viognier',
-'Blend de Malbec'
+'Blend de Malbec',
+'Bobal',
+'Monastrell'
 ]
 
 var images = [
@@ -415,7 +415,19 @@ Promise.all(creationPromises).then(elements => {
 	.then(data => products[18].addGrape(grapes[6]))
 	.then(data => products[19].addGrape(grapes[7]))
 	.then(data => products[19].addGrape(grapes[8]))
-	.then(data => products[12].addGrape(grapes[9]))
+	.then(data => products[12].addGrape(grapes[10]))
+	.then(data => products[12].addGrape(grapes[11]))
+	.then(data => products[11].addGrape(grapes[12]))
+	.then(data => products[13].addGrape(grapes[13]))
+	.then(data => products[14].addGrape(grapes[14]))
+	.then(data => products[15].addGrape(grapes[15]))
+	.then(data => products[16].addGrape(grapes[16]))
+	.then(data => products[17].addGrape(grapes[17]))
+	.then(data => products[17].addGrape(grapes[18]))
+	.then(data => products[18].addGrape(grapes[19]))
+	.then(data => products[19].addGrape(grapes[19]))
+	.then(data => products[19].addGrape(grapes[18]))
+	.then(data => products[12].addGrape(grapes[11]))
 
 	// En la tabla 'orders' tenemos un campo 'userId' que nos indica a que user pertenece cada order.
 	.then(data => users[0].addOrder(orders[0]))

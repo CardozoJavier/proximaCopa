@@ -1,7 +1,8 @@
 var db = require('../index');
 const Sequelize = require('sequelize');
-var crypto = require('crypto'); // NECESARIA PARA LA SEGURIDAD DE LA PW
+var crypto = require('crypto'); 
 
+// Modelo usuario. Datos personales de los usuarios registrados.
 const User = db.define('user', {
     firstName: {
         type: Sequelize.STRING,
@@ -60,20 +61,10 @@ User.prototype.passHash = function (password, salt) {
     return pass;
 }
 
+// Encriptamos la contraseña antes de almacenarla en la base de datos.
 User.hook('beforeCreate', (user, options) => {
     user.salt = User.passwordSalt();
     user.password = user.passHash(user.password, user.salt)
 });
-
-
-//VALIDADOR DE PASSWORD
-//VALIDADOR DE PASSWORD
-//VALIDADOR DE PASSWORD
-//VALIDADOR DE PASSWORD
-// User.prototype.checkPassword = function (password) {
-//     var pass = crypto.createHmac('sha1', this.salt).update(password).digest('hex')
-//     if (pass == this.password) return true
-//     return false
-// }
 
 module.exports = User

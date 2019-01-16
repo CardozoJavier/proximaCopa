@@ -5,8 +5,6 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
 import Paper from '@material-ui/core/Paper';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
@@ -89,9 +87,9 @@ class Checkout extends React.Component {
   getStepContent(step) {
     switch (step) {
       case 0:
-      return <PaymentForm user={ this.props.user }/>;
+      	return <PaymentForm user={ this.props.user }/>;
       case 1:
-      return <AddressForm state= { this.state } handleChange= { this.handleChange } user= { this.props.user } />;
+      	return <AddressForm state= { this.state } handleChange= { this.handleChange } user= { this.props.user } />;
       case 2:
         return <Review products={ this.props.order }/>;
       default:
@@ -101,7 +99,6 @@ class Checkout extends React.Component {
 
 	sendEmail(e){
 		this.props.contactEmail(this.state.user,this.props.order);
-		console.log(this.props.user)
 		this.props.handleEmptyOrder(this.props.user)
 		this.handleNext();
 	}
@@ -149,12 +146,9 @@ class Checkout extends React.Component {
                 <React.Fragment>
                   {this.getStepContent(activeStep)}
                   <div className={classes.buttons}>
-                    {/* {activeStep !== 0 && ( */}
                       <Button onClick={ activeStep == 0 && this.goCheckout || this.handleBack} className={classes.button}>
                         Atras
                       </Button>
-                    {/* )} */}
-
                     {
                       this.props.user.id &&
                         <Button
@@ -194,18 +188,9 @@ function mapDispatchToProps(dispatch){
 			dispatch(sendEmail(user, order))
 		},
 		handleEmptyOrder : (user) => (dispatch) => dispatch(handleEmptyOrder(user))
-
-  //   logoutUser: ()=>{
-  //     dispatch(logoutUser())
-  // },
-  //   getProductsBySearchNavbar:(nombre)=> {
-  //     dispatch(getProductsBySearchNavbar(nombre))
-  //   },
   }
 };
 
 
 
-export default connect(mapStateToProps,mapDispatchToProps)(withStyles(styles)(Checkout))
-
-// export default ;
+export default connect(mapStateToProps,mapDispatchToProps)(withStyles(styles)(Checkout));

@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Login from '../../components/Login'
 import { loginUser } from '../../store/actions/UserActions';
+import { getCart } from '../../store/actions/OrderActions';
 
 class LoginContainer extends React.Component{
 	constructor(props){
@@ -28,10 +29,16 @@ class LoginContainer extends React.Component{
 
 	handleSubmit(event) {
 		event.preventDefault();
-		const email = this.state.email
-		const password = this.state.password
+		const email = this.state.email;
+		const password = this.state.password;
+
 		this.props.loginUser(email,password)
-			.then( () => this.props.history.push('/') )
+			.then(res => {
+				this.props.getCart(res.user.id);
+				this.props.history.push('/');
+				// Forzamos a recargar la pagina para que cargue correctamente las cantidades de productos en el carrito.
+				window.location.reload();
+			})
 			.catch(()=>alert('usuario o contraseña no valido'))
 	} 
 
@@ -56,6 +63,7 @@ class LoginContainer extends React.Component{
 
 function mapStateToProps(state) {
 	return {
+		cart : state.order.cart,
 	}
 }
 
@@ -63,7 +71,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
 	return {
 		loginUser : (email, password) => dispatch(loginUser(email, password)),
-		// isLogged : () => dispatch(isLogged())
+		getCart : (userId) => dispatch(getCart(userId)),
 	}
 }
 

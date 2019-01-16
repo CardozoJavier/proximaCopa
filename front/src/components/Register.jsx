@@ -1,8 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
 
 import PropTypes from 'prop-types';
-import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import FormControl from '@material-ui/core/FormControl';
@@ -50,46 +48,47 @@ const styles = theme => ({
 });
 
 function SignIn(props) {
-    const { classes } = props;
-    const {handleInputChange, handleSubmit, email, password, lastName, firstName} = props;
-    return (
-        <main className={classes.main} >
-            <CssBaseline />
-            <Paper className={classes.paper}>
-
-            <Typography component="h1" variant="h5">
-                Register
-            </Typography>
-				<form className={classes.form} onSubmit={handleSubmit}>
-					<FormControl margin="normal" required fullWidth>
-						<InputLabel htmlFor="name" className={classes.colorInput}>Name</InputLabel>
-						<Input textfield="algo" onChange={handleInputChange} value={firstName} id="firstName" name="firstName"  className={classes.colorInput} autoComplete="firstName" />
-					</FormControl>
-					<FormControl margin="normal" required fullWidth>
-						<InputLabel htmlFor="email"  className={classes.colorInput}>Last Name</InputLabel>
-						<Input id="lastName" onChange={handleInputChange} value={lastName} name="lastName" autoComplete="lastName"  />
-					</FormControl>
-					<FormControl margin="normal" required fullWidth>
-						<InputLabel htmlFor="email" className={classes.colorInput}>Email Address</InputLabel>
-						<Input id="email" onChange={handleInputChange}  value={email}  name="email" autoComplete="email" />
-					</FormControl>
-					<FormControl margin="normal" required fullWidth>
-						<InputLabel htmlFor="password" className={classes.colorInput}>Password</InputLabel>
-						<Input name="password" onChange={handleInputChange}  value={password} type="password" id="password" autoComplete="current-password" />
-					</FormControl>
-					<br/><br/><br/>
-          	<Button
-				  	type="submit"
-				  	fullWidth
-				  	variant="contained"
-				  	className={s.btnRegister}
-				  	>
-				  	Sign in
-				  	</Button>
-        </form>
-			</Paper>
-		</main>
-    );
+	const { classes } = props;
+	const {handleInputChange, handleSubmit, email, password, lastName, firstName} = props;
+	return (
+		<main className={classes.main} >
+			<CssBaseline />
+			<Paper className={classes.paper}>
+			<Typography component="h1" variant="h5">
+					Register
+			</Typography>
+			<form className={classes.form} onSubmit={handleSubmit}>
+				<FormControl margin="normal" required fullWidth>
+					<InputLabel htmlFor="name" className={classes.colorInput}>Name</InputLabel>
+					<Input textfield="algo" onChange={handleInputChange} value={firstName} id="firstName" name="firstName"  className={classes.colorInput} autoComplete="firstName" />
+				</FormControl>
+				<FormControl margin="normal" required fullWidth>
+					<InputLabel htmlFor="email"  className={classes.colorInput}>Last Name</InputLabel>
+					<Input id="lastName" onChange={handleInputChange} value={lastName} name="lastName" autoComplete="lastName"  />
+				</FormControl>
+				<FormControl margin="normal" required fullWidth>
+					<InputLabel htmlFor="email" className={classes.colorInput}>Email Address</InputLabel>
+					<Input id="email" onChange={handleInputChange}  value={email}  name="email" autoComplete="email" />
+				</FormControl>
+				<FormControl margin="normal" required fullWidth>
+					<InputLabel htmlFor="password" className={classes.colorInput}>Password</InputLabel>
+					<Input name="password" onChange={handleInputChange}  value={password} type="password" id="password" autoComplete="current-password" />
+				</FormControl>
+				<br/>
+				<br/>
+				<br/>
+				<Button
+				type="submit"
+				fullWidth
+				variant="contained"
+				className={s.btnRegister}
+				>
+				Sign in
+				</Button>
+			</form>
+		</Paper>
+	</main>
+	);
 }
 
 SignIn.propTypes = {

@@ -1,5 +1,3 @@
-// FUNCANDO 28-11_10:00hs
-
 import React from 'react';
 import s from '../containers/NewProductContainer/style.css';
 

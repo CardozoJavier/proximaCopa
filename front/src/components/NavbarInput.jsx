@@ -1,10 +1,6 @@
 import React from 'react';
 import { withStyles, MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import Input from '@material-ui/core/Input';
-import InputBase from '@material-ui/core/InputBase';
-import InputLabel from '@material-ui/core/InputLabel';
 import TextField from '@material-ui/core/TextField';
-import FormControl from '@material-ui/core/FormControl';
 import purple from '@material-ui/core/colors/purple';
 import green from '@material-ui/core/colors/green';
 
@@ -82,21 +78,22 @@ function CustomizedInputs(props) {
     <div className={classes.container}>
 
       <MuiThemeProvider theme={theme}>
-        <form onSubmit={(e) => {
-          e.preventDefault()
-          props.handleSubmit(e.target.search.value)
-        }}>
-          <TextField
-            fullWidth={true}
-            onChange={props.handleChange}
-            className={classes.margin}
-            name="search"
-            label="¿Qué vino buscás?"
-            id="mui-theme-provider-standard-input"
-          />
+        <form onSubmit={
+					(e) => {
+          	e.preventDefault()
+          	props.handleSubmit(e.target.search.value)
+        	}
+				}>
+				<TextField
+					fullWidth={true}
+					onChange={props.handleChange}
+					className={classes.margin}
+					name="search"
+					label="¿Qué vino buscás?"
+					id="mui-theme-provider-standard-input"
+				/>
         </form>
       </MuiThemeProvider>
-
     </div>
   );
 }

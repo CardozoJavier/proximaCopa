@@ -35,10 +35,9 @@ class TextFields extends React.Component {
 		this.setState({ [name]:e.target.checked })
 	}
   render() {
-    const { handleCheck,
+    const { 
 						selectedCellar, 
 						selectedLine, 
-						selectedGrapes, 
 						handleSubmit, 
 						classes, 
 						state, 

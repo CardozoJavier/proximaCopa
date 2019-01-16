@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import {connect} from 'react-redux'
 
 import Navbar from '../../components/Navbar';
@@ -19,14 +18,12 @@ class NavbarContainer extends Component {
     this.logOut = this.logOut.bind(this);
 		this.handleHome = this.handleHome.bind(this);
   }
-  componentDidMount(){
-    // console.log(this.props.user)
-  }
+
   logOut(e){
     this.props.logoutUser();
     this.props.handleEmptyOrder();
 		this.props.history.push('/');
-    }
+  }
   handleSubmit() {
     let formatSearch = this.state.searchNavbar
 
@@ -48,9 +45,7 @@ class NavbarContainer extends Component {
 
   render() {
     const user = this.props.user
-   
     return (
-
       <Navbar
       	handleChange= { this.handleChange }
       	handleSubmit= { this.handleSubmit }

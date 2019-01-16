@@ -31,7 +31,7 @@ function Review(props) {
       <List disablePadding>
         {products.products.map(product => (
           <ListItem className={classes.listItem} key={product.product.id}>
-            <ListItemText style={{ 'max-width':'500px' }} primary={`${product.product.productName} (x${product.cantidad})`} secondary={product.product.description} />
+            <ListItemText style={{ 'maxWidth':'500px' }} primary={`${product.product.productName} (x${product.cantidad})`} secondary={product.product.description} />
             {product.product.cantidad}
             <Typography variant="body2">$ {product.product.price}</Typography>
           </ListItem>
@@ -49,36 +49,6 @@ function Review(props) {
           </Typography>
         </ListItem>
       </List>
-
-      {
-        // <Grid container spacing={16}>
-        //   <Grid item xs={12} sm={6}>
-        //     <Typography variant="h6" gutterBottom className={classes.title}>
-        //       Shipping
-        //     </Typography>
-        //     <Typography gutterBottom>John Smith</Typography>
-        //     <Typography gutterBottom>{addresses.join(', ')}</Typography>
-        //   </Grid>
-        //   <Grid item container direction="column" xs={12} sm={6}>
-        //     <Typography variant="h6" gutterBottom className={classes.title}>
-        //       Payment details
-        //     </Typography>
-        //     <Grid container>
-        //       {payments.map(payment => (
-        //         <React.Fragment key={payment.name}>
-        //           <Grid item xs={6}>
-        //             <Typography gutterBottom>{payment.name}</Typography>
-        //           </Grid>
-        //           <Grid item xs={6}>
-        //             <Typography gutterBottom>{payment.detail}</Typography>
-        //           </Grid>
-        //         </React.Fragment>
-        //       ))}
-        //     </Grid>
-        //   </Grid>
-        // </Grid>
-
-      }
     </React.Fragment>
   );
 }

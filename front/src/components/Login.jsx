@@ -69,16 +69,18 @@ function SignIn(props) {
             <InputLabel htmlFor="password" >Password</InputLabel>
             <Input name="password" type="password" value={ password } onChange={handleInputChange} id="password" autoComplete="current-password" />
           </FormControl>
-          <br/><br/><br/>
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                color="secondary"
-                className={s.btnRegister}
-                >
-                Sign in  
-            </Button>          
+          <br/>
+					<br/>
+					<br/>
+					<Button
+						type="submit"
+						fullWidth
+						variant="contained"
+						color="secondary"
+						className={s.btnRegister}
+						>
+						Sign in  
+					</Button>          
         </form>
       </Paper>
     </main>

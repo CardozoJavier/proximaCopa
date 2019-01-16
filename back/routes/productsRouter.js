@@ -4,9 +4,9 @@ const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 
 
-var { Product, Grape, Cellar, Line, Elaboracion, Precio, Box } = require('../db/models/index');
+var { Product, Grape, Cellar, Line, Elaboracion, Precio } = require('../db/models/index');
 
-
+// Ruta para filtrar productos que matcheen con la búsqueda del navbar.
 router.get('/busqueda', (req, res) => {
 	Product.findAll({
 		where: {
@@ -23,9 +23,8 @@ router.get('/busqueda', (req, res) => {
 	});
 });
 
+// Ruta que nos devuelve todas las uvas que contiene un producto.
 router.get('/getGrape/:id', (req,res) =>{
-	//#Buscar Grapes de el productID
-	var uvasProducto = []
 	var productId = req.params.id;
 	Product.findById(productId)
 	.then(
@@ -39,6 +38,7 @@ router.get('/getGrape/:id', (req,res) =>{
 	}
 )
 
+// 
 router.get('/getProductsByGrape/:productId', (req,res) => {
 	//#Selecciona todos los productos con el mismo grape que el productID
 	var productId = req.params.productId;
@@ -63,7 +63,6 @@ router.get('/getProductsByGrape/:productId', (req,res) => {
 
 // Crea nuevo producto.
 router.post('/newproduct', (req,res) => {
-	// console.log(req.body, ' REQ BODY')
 	// Creo un nuevo producto en la DB con la informacion que me llega en el objeto req.body.
 	Product.create(req.body)
 	.then(product => {
@@ -133,7 +132,7 @@ function filterBuilder (req, res, next) {
 	next()
 }
 
-// FILTROS FUNCIONANDO 28/11/2018 19:00HS
+// Ruta para filtrar productos por uvas, lineas, o bodegas
 router.get('/filter', filterBuilder, (req, res) => {
 	Product.findAll({
 		where: {
@@ -167,6 +166,7 @@ router.get('/filter', filterBuilder, (req, res) => {
 	.catch(e => console.log(e))
 })
 
+// Ruta para actualizar la información de un producto.
 router.put('/update', (req,res) => {
 	Product.findById(req.body.productId)
 		.then(product => product.update(req.body))
@@ -176,12 +176,13 @@ router.put('/update', (req,res) => {
 		.then(data => res.send(data))
 });
 
+// Ruta que busca por ID y nos devuelve un producto.
 router.get('/:id', (req,res) => {
 	Product.findById(req.params.id)
 	.then (data => res.send(data));
 });
 
-// Ruta --> /api/products 
+// Ruta --> /api/products que nos devueve todos los productos. 
 router.get('/', (req,res) => {
 	Product.findAll({})
 	.then (data => res.send(data));

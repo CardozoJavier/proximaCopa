@@ -13,49 +13,43 @@ const initialSate ={
 		productUpdated: {}
 };
 
-export default (state = initialSate, action)=>{
+export default (state = initialSate, action) => {
 
-    switch (action.type) {
+	switch (action.type) {
 
-        // case FILTER_SIDEBAR:
-        //     return Object.assign({}, state, { 
-        //         SidebarFilteredProducts: actions.products,
-        //     });
+		case FETCH_PRODUCTS_BY_NAME:
+			return Object.assign({}, state, { filteredProducts: action.products });
 
-        case FETCH_PRODUCTS_BY_NAME:
-            return Object.assign({}, state, { filteredProducts: action.products });
+		case SELECT_PRODUCT:
+			return Object.assign({}, state, { selectedProduct: action.product })
 
-        case SELECT_PRODUCT:
-            return Object.assign({}, state, { selectedProduct: action.product })
+		case SELECT_SIMILAR_PRODUCTS:
+			return Object.assign({}, state, { similarProducts: action.products })
 
-        case SELECT_SIMILAR_PRODUCTS:
-            return Object.assign({}, state, { similarProducts: action.products })
+		case FETCH_ALL_PRODUCTS:
+			return Object.assign({}, state, { allProducts: action.products })
 
-        case FETCH_ALL_PRODUCTS:
-            return Object.assign({}, state, { allProducts: action.products })
+		case CREATE_PRODUCT:
+			return Object.assign({}, state, { product:action.product });
 
-        case CREATE_PRODUCT:
-                return Object.assign({}, state, { product:action.product });
+		case GET_GRAPES:
+			return Object.assign({}, state, { grapes:action.grapes });
 
-        case GET_GRAPES:
-                return Object.assign({}, state, { grapes:action.grapes });
+		case FETCH_ALL_CELLARS:
+			return Object.assign({}, state, { allCellars:action.cellars });
 
-				case FETCH_ALL_CELLARS:
-								return Object.assign({}, state, { allCellars:action.cellars });
+		case FETCH_ALL_LINES:
+			return Object.assign({}, state, { allLines:action.lines });
 
-				case FETCH_ALL_LINES:
-								return Object.assign({}, state, { allLines:action.lines });
+		case FETCH_SELECTEDGRAPES:
+			return Object.assign({}, state, { selectedGrapes:action.selectedGrapes });
 
-				case FETCH_SELECTEDGRAPES:
-								return Object.assign({}, state, { selectedGrapes:action.selectedGrapes });
+		case PRODUCT_UPDATED:
+			return Object.assign({}, state, { productUpdated:action.productUpdated });
 
-				case PRODUCT_UPDATED:
-								return Object.assign({}, state, { productUpdated:action.productUpdated });
-
-        default:
-            return state;
-    }
-
+		default:
+			return state;
+	}
 }
 
 

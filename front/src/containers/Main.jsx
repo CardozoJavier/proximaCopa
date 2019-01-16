@@ -12,6 +12,7 @@ import OneProductContainer from './OneProductContainer/OneProductContainer';
 import NewProductContainer from './NewProductContainer/NewProductContainer';
 import ProductsGridContainer from './ProductsGrid/ProductsGridContainer';
 import UserPanelContainer from './UserPanelContainer/UserPanelContainer';
+import AccountsContainer from './AccountsContainer/AccountsContainer';
 import OrdersContainer from './OrdersContainer/OrdersContainer';
 import NavbarContainer from './NavbarContainer/NavbarContainer';
 import RegisterContainer from './Register/RegisterContainer';
@@ -40,7 +41,6 @@ class Main extends React.Component {
 		this.props.fetchAllProducts();
 		this.props.isLogged();
 		this.checkLocalStorage();
-		// (this.props.user.id && this.props.setCartFromUserToStore(this.props.user))
 	}
 
 	checkLocalStorage(){
@@ -54,7 +54,6 @@ class Main extends React.Component {
 
 	render() {
 		const user = this.props.user
-		// console.log(user)
 		return (
 			<div className={s.container}>
 				<div className={s.navbar}>
@@ -75,6 +74,7 @@ class Main extends React.Component {
 						{	user.access === 5 && <Route path='/newcategory' component= { NewCategoryContainer } /> }
 						{	user.access === 5 && <Route path='/product/edit' component= { ProductListContainer } /> }
 						{	user.access === 5 && <Route path='/orders' component= { OrdersContainer } /> }
+						{ user.access === 5 && <Route path='/accounts' component= { AccountsContainer } /> }
 					</Switch>
 				</div>
 			</div>   

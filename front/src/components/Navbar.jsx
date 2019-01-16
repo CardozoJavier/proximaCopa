@@ -107,15 +107,12 @@ function CustomizedInputs(props) {
         </div>
     </div>
     <div className={s.rightSideNavbar}>
-          {/* {(user.admin )&& <button> ADMIN </button>} */}
-
-          { (user.firstName) &&  <Link to ="/"  onClick={logOut}>LOG OUT </Link> }
-          {!(user.firstName) &&  <Link to="/login"> LOGIN  </Link>}
-          {!(user.firstName) &&  <Link to="/register">  REGISTER </Link>}
-          <div> <Link to="/carrito">  <ShoppingCart /> </Link></div>      
-   </div>
+			{ (user.firstName) &&  <Link to ="/"  onClick={logOut}>LOG OUT </Link> }
+			{	!(user.firstName) &&  <Link to="/login"> LOGIN  </Link>	}
+			{	!(user.firstName) &&  <Link to="/register">  REGISTER </Link>	}
+			<div> <Link to="/carrito">  <ShoppingCart /> </Link></div>      
+   	</div>
   </div>
-
   );
 }
 

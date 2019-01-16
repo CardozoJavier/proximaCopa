@@ -1,5 +1,4 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
 import IconButton from '@material-ui/core/IconButton';
 import Badge from '@material-ui/core/Badge';
 import { withStyles } from '@material-ui/core/styles';
@@ -20,10 +19,11 @@ const styles = theme => ({
 function CustomizedBadge(props) {
   const { classes } = props;
   var totalProductos = 0;
-  
-  props.order.products.length > 0 ? props.order.products.map(producto => {
-    totalProductos += producto.cantidad;
-  }): totalProductos
+  props.order.products.length > 0 ? 
+		props.order.products.map(producto => {
+    	totalProductos += producto.cantidad;
+  	})
+	: totalProductos
   return (
     <IconButton aria-label="Cart" style={{'padding': '0'}}>
     {
@@ -40,15 +40,13 @@ function CustomizedBadge(props) {
 
 
 function mapStateToProps(state){
-    return{
-        order: state.order
-    }
+	return{
+		order: state.order
+	}
 };
 
 function mapDispatchToProps(dispatch){
-    return{ 
-        
-    }
+	return{ }
 };
 
 const cart = withStyles(styles)(CustomizedBadge);

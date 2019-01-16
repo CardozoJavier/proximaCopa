@@ -2,19 +2,16 @@ const express= require('express');
 const router= express();
 var passport = require('passport');
 
-var {User} = require('../db/models/index');
+var { User } = require('../db/models/index');
 
 
-router.get('/test', (req, res) => {
-    res.send({
-        message: 'test',
-        user: req.user
-    })
-})
+// Ruta para logout.
 router.post('/logout',(req,res)=>{
     req.logout();
-    res.send('Usuario deslogeado');
+    res.send('Usuario no logueado');
 })
+
+// Ruta para registro de nuevo usuario
 router.post('/register', (req, res, )=>{
      User.create({
         email: req.body.email,
@@ -26,10 +23,10 @@ router.post('/register', (req, res, )=>{
     .then(user => {
         res.send(user)
     })
-    .catch(e => console.log(e));
-
-  
+    .catch(e => console.log(e));  
 })
+
+// Ruta para promover administrador.
 router.post('/registerAdmin', (req, res, )=>{
     User.create({
        email: req.body.email,
@@ -54,6 +51,7 @@ router.post('/registerAdmin', (req, res, )=>{
  
 })
 
+// Ruta para loguearse.
 router.post('/login', passport.authenticate('local'), (req, res)=>{
   const authenticated = req.isAuthenticated();
  	User.findById(req.user.id)
@@ -78,6 +76,7 @@ router.post('/login', passport.authenticate('local'), (req, res)=>{
 		})
 })
 
+// Ruta para actualizar los datos de un usuario.
 router.put('/:id/update', (req,res) => {
 	User.findById(req.params.id)
 		.then(user => user.update(req.body))
@@ -85,12 +84,14 @@ router.put('/:id/update', (req,res) => {
 		.catch(e => console.log(e))
 });
 
+// Ruta que busca por ID y nos devuelve un usuario.
 router.get('/:id', (req,res) => {
 	User.findById(req.params.id)
 		.then(data => res.send(data))
 		.catch(e => console.log(e))
 });
 
+// Ruta que nos devuelve todos los usuarios.
 router.get('/', (req,res) => {
 	User.findAll({})
 		.then(data => res.send(data))

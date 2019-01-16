@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import SidebarContainer from '../Sidebar/SidebarContainer'
 import s from '../Main.css'
 
 import SingleProduct from '../SingleProduct/SingleProduct';

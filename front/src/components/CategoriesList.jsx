@@ -4,23 +4,13 @@ import { withStyles } from '@material-ui/core/styles';
 import Chip from '@material-ui/core/Chip';
 
 const styles = theme => ({
-  // root: {
-  //   display: 'flex',
-  //   justifyContent: 'center',
-  //   flexWrap: 'wrap',
-  // },
   chip: {
     margin: theme.spacing.unit,
   },
 });
 
-// function handleDelete() {
-//   alert('You clicked the delete icon.'); // eslint-disable-line no-alert
-// }
-
 function OutlinedChips(props) {
   const { classes, allCellars, allLines, allGrapes, handleDelete } = props;
-	// console.log(allGrapes)	
   return (
 		<div >
 			<div>

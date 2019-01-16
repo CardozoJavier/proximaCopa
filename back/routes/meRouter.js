@@ -1,9 +1,8 @@
 
 const express= require ('express');
 const router= express();
-const { User }= require('../db/models/index.js');
 
-
+// Ruta para comprobar si el usuario está logueado o no.
 router.get('/', (req,res)=>{
     req.user ? res.send(req.user) : res.send({user: false})
 })

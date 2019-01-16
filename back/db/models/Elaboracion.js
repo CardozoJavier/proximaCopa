@@ -1,6 +1,7 @@
 var db = require('../index');
 const Sequelize = require('sequelize');
 
+// Modelo de fecha de elaboración. Lo usaremos para filtrar vinos por año.
 const Elaboracion = db.define('elaboracion', {
 	fecha: {
 		type: Sequelize.STRING,
@@ -8,16 +9,3 @@ const Elaboracion = db.define('elaboracion', {
 });
 
 module.exports = Elaboracion;
-
-// FUNCANDO 10:00hs
-
-// var db = require('../index');
-// const Sequelize = require('sequelize');
-
-// const Elaboracion = db.define('elaboracion', {
-// 	fecha: {
-// 		type: Sequelize.STRING,
-// 	},
-// });
-
-// module.exports = Elaboracion;

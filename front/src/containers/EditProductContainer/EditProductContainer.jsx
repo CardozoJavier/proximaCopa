@@ -150,26 +150,26 @@ class NewProductContainer extends Component{
 
 	render(){
 		return (
-				<div className={s.container}>
-							<FormProductEdit
-								backToList= { this.backToList } 
-								handleCheck= { this.handleCheck }
-								allCellars= { this.props.allCellars } 
-								allLines= { this.props.allLines } 
-								allGrapes= { this.state.allGrapes }
-								selectedGrapes= { this.state.selectedGrapes }
-								selectedLine= { this.state.selectedLine }
-								selectedCellar= { this.state.selectedCellar }
-								handleChange= { this.handleChange } 
-								selectedProduct= { this.props.selectedProduct }
-								state= { this.state }
-								handleSubmit= { this.handleSubmit }
-							/>
-							{
-								this.state.open &&  
-								<UpdateToast open= {this.state.open} handleClose= {this.handleClose} status={this.props.productUpdated}/> 
-							}
-				</div>
+			<div className={s.container}>
+				<FormProductEdit
+					backToList= { this.backToList } 
+					handleCheck= { this.handleCheck }
+					allCellars= { this.props.allCellars } 
+					allLines= { this.props.allLines } 
+					allGrapes= { this.state.allGrapes }
+					selectedGrapes= { this.state.selectedGrapes }
+					selectedLine= { this.state.selectedLine }
+					selectedCellar= { this.state.selectedCellar }
+					handleChange= { this.handleChange } 
+					selectedProduct= { this.props.selectedProduct }
+					state= { this.state }
+					handleSubmit= { this.handleSubmit }
+				/>
+				{
+					this.state.open &&  
+					<UpdateToast open= { this.state.open } handleClose= { this.handleClose } status={ this.props.productUpdated }/> 
+				}
+			</div>
 		)
 	}
 }

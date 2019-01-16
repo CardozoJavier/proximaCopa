@@ -1,5 +1,3 @@
-// FUNCANDO 28-11_10:00hs
-
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
@@ -134,26 +132,26 @@ class NewProductContainer extends Component{
 
 	render(){
 		return (
-				<div className={s.container}>
-					<AdminPanelContainer />
-					
-					<NewProduct
-						clear= { this.clear }
-						wrongLine= { this.state.wrongLine && <p>El campo 'Linea' es obligatorio. Por favor elige entre las opciones</p> }
-						wrongCellar= { this.state.wrongCellar && <p>El campo 'Bodega' es obligatorio. Por favor elige entre las opciones</p> }
-						checkValue= {this.checkValue}
-						isChecked={this.isChecked} 
-						state={this.state} 
-						grapes= {this.props.grapes} 
-						handleChange={this.handleChange} 
-						handleClick={this.handleClick} 
-					/>
-					
-					{ 
-						this.state.open && 
-						<Toast open= {this.state.open} handleClose= {this.handleClose} status={this.props.created}/> 
-					}
-				</div>
+			<div className={s.container}>
+				<AdminPanelContainer />
+				
+				<NewProduct
+					clear= { this.clear }
+					wrongLine= { this.state.wrongLine && <p>El campo 'Linea' es obligatorio. Por favor elige entre las opciones</p> }
+					wrongCellar= { this.state.wrongCellar && <p>El campo 'Bodega' es obligatorio. Por favor elige entre las opciones</p> }
+					checkValue= {this.checkValue}
+					isChecked={this.isChecked} 
+					state={this.state} 
+					grapes= {this.props.grapes} 
+					handleChange={this.handleChange} 
+					handleClick={this.handleClick} 
+				/>
+				
+				{ 
+					this.state.open && 
+					<Toast open= {this.state.open} handleClose= {this.handleClose} status={this.props.created}/> 
+				}
+			</div>
 		)
 	}
 }

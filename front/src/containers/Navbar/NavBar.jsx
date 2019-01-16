@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'
 import s from '../Navbar/Navbar.css'
-import axios from 'axios'
+
 import ShoppingCart from '../../components/ShoppingCart'
 import NavbarInput from '../../components/NavbarInput';
-import { connect } from 'react-redux';
+
 import { getProductsBySearchNavbar } from '../../store/actions/FilterActions';
 
 function mapStateToProps(state, ownProps) {
@@ -37,7 +38,6 @@ class NavBar extends Component {
       function(g0,g1,g2){return g1.toUpperCase() + g2.toLowerCase();});
 
     this.props.getProductsBySearchNavbar(formatSearch);
-    // this.props.history.push('/productos');
   }
 
   handleChange(e) {

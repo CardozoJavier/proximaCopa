@@ -30,7 +30,7 @@ app.use(session({ secret: 'wine' }));
 app.use(passport.initialize());
 app.use(passport.session());
 
-//passport
+// PASSPORT
 passport.use(new LocalStrategy({
 	usernameField:'email'
 },
