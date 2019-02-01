@@ -99,7 +99,7 @@ class Checkout extends React.Component {
 
 	sendEmail(e){
 		this.props.contactEmail(this.state.user,this.props.order);
-		this.props.handleEmptyOrder(this.props.user)
+		this.props.handleEmptyOrder(this.props.user);
 		this.handleNext();
 	}
 

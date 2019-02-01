@@ -1,12 +1,9 @@
 const express= require('express');
 const router= express();
+const nodemailer = require('nodemailer');
+const config = require('../config/smtp.json');
 
 const { Order, OrderProduct, Product, Cellar, Line }=require('../db/models/index')
-// Set inicial para el envío de mails con 'mailgun'.
-var { apiKey, domain }= require('../config/mailing.js')
-var Mailgun= require('mailgun-js');
-var mailgun= new Mailgun({ apiKey, domain });
-
 
 // Ruta que se encarga de enviar el mail de confirmación de compra al administrador.
 router.post('/email', (req,res) => {
@@ -33,6 +30,7 @@ router.post('/email', (req,res) => {
 			})
 			.catch(e => console.log(e)) 
 	})
+
 	Promise.all(data).then(data =>	{
 		// Esto va a ser el contentido del mail con los datos de la venta:
 		var productInfo= data.map(e => {
@@ -48,31 +46,41 @@ router.post('/email', (req,res) => {
 				'\n_____________________________\n'
 			]
 		})		
-		// Formato del mail, con los campos requeridos por mailGun.
-		var content = {
-			from: 'proxima_copa@pogo.com',
-			to: 'cardozojavier.c@gmail.com',
-			subject: 'Datos de venta',
-			text: [
-			'	Nueva venta realizada\n'
-			+ '- - - - - - - - - - - - - - - - - - - - - - - - - -'
-			+ '\n	ID de usuario: ' + req.body.user.id
-			+ '\n	Nombre de usuario: '+ req.body.user.firstName + ' ' + req.body.user.lastName
-			+ '\n	Email: ' + req.body.user.email
-			+ '\n	Telefono: ' + req.body.user.telefono
-			+ '\n	Domicilio: ' + req.body.user.domicilio
-			+ '\n	Ciudad: ' + req.body.user.ciudad
-			+ '\n	Provincia: ' + req.body.user.provincia + '\n'	
-			+ '- - - - - - - - - - - - - - - - - - - - - - - - - -\n'
-			+ 'Productos: \n' + productInfo.join('')
-			+ '\n Total: $' + total].join('')
 
-		};
-		mailgun.messages().send(content, function (error, body) {
-			error ? console.log(error) : console.log('Datos enviados al administrador');
+		let mailOptions = {
+			from : config.mailOptions.from,
+			to : config.mailOptions.to,
+			subject : config.mailOptions.subject,
+			text: [
+				'	Datos del comprador\n'
+				+ '- - - - - - - - - - - - - - - - - - - - - - - - - -'
+				+ '\n	ID de usuario: ' + req.body.user.id
+				+ '\n	Nombre de usuario: '+ req.body.user.firstName + ' ' + req.body.user.lastName
+				+ '\n	Email: ' + req.body.user.email
+				+ '\n	Telefono: ' + req.body.user.telefono
+				+ '\n	Domicilio: ' + req.body.user.domicilio
+				+ '\n	Ciudad: ' + req.body.user.ciudad
+				+ '\n	Provincia: ' + req.body.user.provincia + '\n'	
+				+ '- - - - - - - - - - - - - - - - - - - - - - - - - -\n'
+				+ 'Productos: \n' + productInfo.join('')
+				+ '\n Total: $' + total].join('')
+		}
+
+		let transporter = nodemailer.createTransport({
+			host : config.smtp.host,
+			port : config.smtp.port,
+			secure : config.smtp.secure,
+			auth : {
+				user : config.smtp.auth.user,
+				pass : config.smtp.auth.pass
+			}
 		});
-	});
-})
+
+		transporter.sendMail(mailOptions);
+	})
+	res.sendStatus(200);
+});
+
 
 // Ruta que nos devuelve el carrito de un usuario.
 router.get('/cart/:userId', function(req, res){
@@ -250,3 +258,4 @@ router.get('/', (req,res) => {
 });
 
 module.exports= router;
+

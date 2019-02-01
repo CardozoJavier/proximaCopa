@@ -6,6 +6,12 @@ const Op = Sequelize.Op;
 
 var { Product, Grape, Cellar, Line, Elaboracion, Precio } = require('../db/models/index');
 
+// Ruta para decrementar el stock de un producto una vez realizada la compra.
+// router.put('/stock', (req,res) => {
+// 	Product.findById()
+// });
+
+
 // Ruta para filtrar productos que matcheen con la búsqueda del navbar.
 router.get('/busqueda', (req, res) => {
 	Product.findAll({
